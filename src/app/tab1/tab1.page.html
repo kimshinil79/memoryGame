@@ -17,7 +17,7 @@
     <ion-row  *ngFor ="let row of rows">
       <ion-col *ngFor="let col of columns">
         <ion-card color ="primary">
-          <ion-card-content>{{row}},{{col}}</ion-card-content>
+          <ion-card-content (click)="clickCard()">{{randomAnimalXYparing[row+col]}}</ion-card-content>
         </ion-card>
       </ion-col>
     </ion-row>

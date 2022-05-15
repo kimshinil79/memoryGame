@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { MGserveService } from '../services/mgserve.service';
+import { OnInit } from '@angular/core';
+
 
 @Component({
   selector: 'app-tab1',
@@ -12,11 +14,20 @@ export class Tab1Page {
     private MGservice: MGserveService
   ) {}
 
-  rows = [0,1,2,3,4,5];
-  columns = [0,1,2,3,4,5];
+  randomAnimalXYparing = {}
+
+  ngOnInit() {
+    this.randomAnimalXYparing = this.MGservice.randomPositionPic();
+    console.log(this.randomAnimalXYparing);
+  }
+
+
+
+  rows = ['0','1','2','3'];
+  columns = ['0','1','2','3'];
   
   clickCard() {
-    this.MGservice.clickedX = 0;
+    console.log('click!!')
   }
 
 }

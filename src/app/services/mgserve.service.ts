@@ -24,11 +24,6 @@ animalList = ['kangaroo', 'rabbit', 'dog', 'cat', 'Koala', 'Gorilla', 'monkey',
 'silkworm', 'anaconda', 'mantis', 'cuckoo', 'ant', 'swallow', 'lion', 'hyena'];
 
   constructor() {
-
-    console.log(this.pickSelectedNumPicFromList(8))
-    console.log(this.suffleArray(this.makeXYparing(8,8)));
-    console.log(this.randomPositionPic())
-
    }
 
    //리스트 항목을 셔플하는 함수
@@ -51,7 +46,7 @@ animalList = ['kangaroo', 'rabbit', 'dog', 'cat', 'Koala', 'Gorilla', 'monkey',
 
 
 
-  //같은 종류의 사진에서 랜덤으로 2개 뽑을 때 인덱스 생성 함수
+  //같은 종류의 사진에서 랜덤으로 2개 뽑을 때 인덱스 생성 함수, 만들고 보니 필요없는 함수가 되버림;;;
   randomIndex() {
     let randomIndexArray = [];
     for(let i=0;i<2;i++) {
@@ -70,11 +65,11 @@ animalList = ['kangaroo', 'rabbit', 'dog', 'cat', 'Koala', 'Gorilla', 'monkey',
     let coordinateList = [];
     for (let i=0;i<row; i++) {
       for (let j=0;j<col;j++) {
-        coordinateList.push([i,j])
+        coordinateList.push(i.toString()+j.toString())
       }
     }
 
-    return coordinateList
+    return coordinateList 
 
   }
 
@@ -82,21 +77,21 @@ animalList = ['kangaroo', 'rabbit', 'dog', 'cat', 'Koala', 'Gorilla', 'monkey',
   randomPositionPic(){
     let animalFileName = [];
     let randomAnimalName = this.pickSelectedNumPicFromList(this.picTypeNum);
+    let randomIndex = Math.floor(Math.random()*5);
     for(let animal of randomAnimalName) {
-      for(let index of this.randomIndex()) {
-        animalFileName.push(animal+index.toString()+".jpg")
-      }
+      animalFileName.push(animal+randomIndex.toString()+".jpg");
+      animalFileName.push(animal+randomIndex.toString()+".jpg");
+
     }
-    let randomCoordiate  = this.suffleArray(this.makeXYparing(8,8))
-    console.log('haha');
-    console.log(randomCoordiate);
+    let randomCoordiate  = this.suffleArray(this.makeXYparing(4,4))
     let XYanimalArray = {};
 
-    for (let i=0;randomCoordiate.length;i++) {
-      XYanimalArray[animalFileName[i]] = randomCoordiate[i] 
+
+    for (let i=0;i<randomCoordiate.length;i++) {
+      XYanimalArray[randomCoordiate[i]] = animalFileName[i];
     }
 
-    return animalFileName
+    return XYanimalArray;
   }
 
 
