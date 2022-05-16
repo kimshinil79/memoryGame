@@ -25,9 +25,25 @@ export class Tab1Page {
 
   rows = ['0','1','2','3'];
   columns = ['0','1','2','3'];
+  firstClickedXY = "";
+  secondClickedXY ="";
+  firstSelectedPic = "";
+  secondSelectedpic = "";
+  clickCount = 0;
   
-  clickCard() {
-    console.log('click!!')
+  clickCard(row, col) {
+    if (this.clickCount == 0) {
+      this.firstClickedXY = row.toString()+col.toString();
+      this.firstSelectedPic = this.randomAnimalXYparing[this.firstClickedXY]
+      this.secondSelectedpic = "";
+      this.clickCount++;
+      console.log(this.clickCount);
+    } else  {
+      this.secondClickedXY = row.toString()+col.toString();
+      this.secondSelectedpic = this.randomAnimalXYparing[this.secondClickedXY];
+      this.clickCount = 0;
+    }    
+    
   }
 
 }

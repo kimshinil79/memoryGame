@@ -17,13 +17,20 @@
     <ion-row  *ngFor ="let row of rows">
       <ion-col *ngFor="let col of columns">
         <ion-card color ="primary">
-          <ion-card-content (click)="clickCard()">
-            <img src = "../../assets/animalPic/{{randomAnimalXYparing[row+col]}}">
-          </ion-card-content>
+          <ion-card-content (click)="clickCard(row, col)"></ion-card-content>
         </ion-card>
       </ion-col>
     </ion-row>
   </ion-grid>
-
-
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-img src = "../../assets/animalPic/{{firstSelectedPic}}"></ion-img>
+      </ion-col>
+      <ion-col>
+        <ion-img  src = "../../assets/animalPic/{{secondSelectedpic}}"></ion-img>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+ 
 </ion-content>
