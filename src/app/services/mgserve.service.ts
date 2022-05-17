@@ -7,6 +7,9 @@ import { Injectable } from '@angular/core';
 export class MGserveService {
   public clickedX = 0;
   public clickedY = 0;
+
+  public gameDimensionX = 0;
+  public gameDimensionY = 0; 
   
   //게임에 사용할 동물 수
   public picTypeNum = 8;

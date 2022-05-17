@@ -1,8 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Tab 1
-    </ion-title>
+    <ion-button (click)="newGame()">새게임</ion-button>
+    <ion-button (click)="createPopover()">게임 크기</ion-button>
   </ion-toolbar>
 </ion-header>
 
@@ -25,12 +24,22 @@
   <ion-grid>
     <ion-row>
       <ion-col>
-        <ion-img src = "../../assets/animalPic/{{firstSelectedPic}}"></ion-img>
+        <div *ngIf = "firstPicBlank===false ; else showPic1">
+        </div>
+        <ng-template #showPic1>
+          <ion-img src = "../../assets/animalPic/{{firstSelectedPic}}"></ion-img>
+        </ng-template>
+        
       </ion-col>
       <ion-col>
-        <ion-img  src = "../../assets/animalPic/{{secondSelectedpic}}"></ion-img>
+        <div *ngIf = "secondPicBlank===false ; else showPic2">
+        </div>
+        <ng-template #showPic2>
+          <ion-img  src = "../../assets/animalPic/{{secondSelectedpic}}"></ion-img>
+        </ng-template>
       </ion-col>
     </ion-row>
   </ion-grid>
+  
  
 </ion-content>

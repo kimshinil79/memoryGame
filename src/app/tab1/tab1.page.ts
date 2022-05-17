@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { MGserveService } from '../services/mgserve.service';
-import { OnInit } from '@angular/core';
+import { popoverController } from '@ionic/core';
+import { DimensionpopComponent } from '../popovers/dimensionpop/dimensionpop.component';
+import { PopoverController } from '@ionic/angular';
+
 
 
 @Component({
@@ -11,7 +14,8 @@ import { OnInit } from '@angular/core';
 export class Tab1Page {
 
   constructor(
-    private MGservice: MGserveService
+    private MGservice: MGserveService, 
+    private popover:PopoverController
   ) {}
 
   randomAnimalXYparing = {}
@@ -25,25 +29,45 @@ export class Tab1Page {
 
   rows = ['0','1','2','3'];
   columns = ['0','1','2','3'];
+  firstPicBlank = false;
+  secondPicBlank = false;
   firstClickedXY = "";
   secondClickedXY ="";
   firstSelectedPic = "";
   secondSelectedpic = "";
   clickCount = 0;
   
-  clickCard(row, col) {
+  clickCard(row:string, col:string) {
     if (this.clickCount == 0) {
-      this.firstClickedXY = row.toString()+col.toString();
-      this.firstSelectedPic = this.randomAnimalXYparing[this.firstClickedXY]
-      this.secondSelectedpic = "";
+      this.firstPicBlank = true;
+      this.firstClickedXY = row.toString()+col.toString(); 
+      this.firstSelectedPic = this.randomAnimalXYparing[this.firstClickedXY];
       this.clickCount++;
-      console.log(this.clickCount);
+      this.secondPicBlank = false;
     } else  {
       this.secondClickedXY = row.toString()+col.toString();
-      this.secondSelectedpic = this.randomAnimalXYparing[this.secondClickedXY];
-      this.clickCount = 0;
+      if (this.firstClickedXY != this.secondClickedXY) {
+        this.secondPicBlank = true;
+        this.secondSelectedpic = this.randomAnimalXYparing[this.secondClickedXY];
+        this.clickCount = 0;
+      }
+      
     }    
     
+  }
+
+  newGame() {
+    this.randomAnimalXYparing = this.MGservice.randomPositionPic();
+    this.firstPicBlank = false;
+    this.secondPicBlank = false
+  }
+
+  async createPopover(ev:any) {
+    const pop = await this.popover.create({
+      component:DimensionpopComponent,
+      event: ev
+    });
+    return await pop.present();
   }
 
 }
