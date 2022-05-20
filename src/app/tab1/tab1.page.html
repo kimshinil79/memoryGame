@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-button (click)="newGame()">새게임</ion-button>
-    <ion-button (click)="createPopover()">게임 크기</ion-button>
+    <ion-button (click)="createPopover()">게임 크기{{MGservice.gameDimensionX}}x{{MGservice.gameDimensionY}}</ion-button>
   </ion-toolbar>
 </ion-header>
 

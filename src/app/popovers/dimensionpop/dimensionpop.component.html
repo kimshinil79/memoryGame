@@ -1,3 +1,36 @@
-<p>
-  <ion-icon name="caret-up-circle-outline" size="large"></ion-icon>
-</p>
+<ion-grid>
+  <ion-row>
+    <ion-col class="ion-no-padding">
+      <ion-icon name="caret-up-circle-outline" size="large" (click)="rowUp()"></ion-icon>
+    </ion-col>
+    <ion-col class="ion-no-padding">
+
+    </ion-col>
+    <ion-col class="ion-no-padding">
+      <ion-icon name="caret-up-circle-outline" size="large" (click)="colUp()"></ion-icon>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col class="ion-no-padding">
+      <ion-input type="number" >{{row}}</ion-input>
+    </ion-col>
+    <ion-col class="ion-no-padding">
+      X
+    </ion-col>
+    <ion-col class="ion-no-padding">
+      <ion-input type="number">{{col}}</ion-input>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col class="ion-no-padding"> 
+      <ion-icon name="caret-down-circle-outline" size="large" (click)="rowDown()"></ion-icon>
+    </ion-col>
+    <ion-col class="ion-no-padding"></ion-col>
+    <ion-col class="ion-no-padding">
+      <ion-icon name="caret-down-circle-outline" size="large" (click)="colDown()"></ion-icon>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+<ion-button (click)="closePopover()">취소</ion-button>
+<ion-button (click)="save()">저장</ion-button>
+

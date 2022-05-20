@@ -22,13 +22,18 @@ export class Tab1Page {
 
   ngOnInit() {
     this.randomAnimalXYparing = this.MGservice.randomPositionPic();
-    console.log(this.randomAnimalXYparing);
+    for (let i=0;i<this.MGservice.gameDimensionX;i++){
+      this.rows.push(i.toString())
+    }
+    for (let j=0;j<this.MGservice.gameDimensionY;j++) {
+      this.columns.push(j.toString())
+    }
   }
 
 
 
-  rows = ['0','1','2','3'];
-  columns = ['0','1','2','3'];
+  rows = [];
+  columns = [];
   firstPicBlank = false;
   secondPicBlank = false;
   firstClickedXY = "";
@@ -57,17 +62,46 @@ export class Tab1Page {
   }
 
   newGame() {
+    this.MGservice.picTypeNum = this.MGservice.gameDimensionX * this.MGservice.gameDimensionY /2
     this.randomAnimalXYparing = this.MGservice.randomPositionPic();
     this.firstPicBlank = false;
-    this.secondPicBlank = false
+    this.secondPicBlank = false;
+    this.rows=[];
+    this.columns=[];
+    for (let i=0;i<this.MGservice.gameDimensionX;i++){
+      this.rows.push(i.toString())
+    }
+    for (let j=0;j<this.MGservice.gameDimensionY;j++) {
+      this.columns.push(j.toString())
+    }
   }
+
+  // async createPopover(ev:any) {
+  //   const pop = await this.popover.create({
+  //     component:DimensionpopComponent,
+  //     event: ev
+  //   });
+    
+    
+  //   return pop.present()
+
+  // }
 
   async createPopover(ev:any) {
     const pop = await this.popover.create({
       component:DimensionpopComponent,
       event: ev
     });
-    return await pop.present();
+    pop.present()
+    
+    return pop.onDidDismiss().then(
+      (data:any) => {
+        if(data.data['selection']) {
+          this.newGame();
+        }
+      }
+    )
+
   }
 
 }

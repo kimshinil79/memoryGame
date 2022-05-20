@@ -8,8 +8,8 @@ export class MGserveService {
   public clickedX = 0;
   public clickedY = 0;
 
-  public gameDimensionX = 0;
-  public gameDimensionY = 0; 
+  public gameDimensionX = 4;
+  public gameDimensionY = 4; 
   
   //게임에 사용할 동물 수
   public picTypeNum = 8;
@@ -86,7 +86,7 @@ animalList = ['kangaroo', 'rabbit', 'dog', 'cat', 'Koala', 'Gorilla', 'monkey',
       animalFileName.push(animal+randomIndex.toString()+".jpg");
 
     }
-    let randomCoordiate  = this.suffleArray(this.makeXYparing(4,4))
+    let randomCoordiate  = this.suffleArray(this.makeXYparing(this.gameDimensionX, this.gameDimensionY))
     let XYanimalArray = {};
 
 
@@ -96,7 +96,6 @@ animalList = ['kangaroo', 'rabbit', 'dog', 'cat', 'Koala', 'Gorilla', 'monkey',
 
     return XYanimalArray;
   }
-
 
 
   
