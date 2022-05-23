@@ -2,6 +2,7 @@
   <ion-toolbar>
     <ion-button (click)="newGame()">새게임</ion-button>
     <ion-button (click)="createPopover()">게임 크기{{MGservice.gameDimensionX}}x{{MGservice.gameDimensionY}}</ion-button>
+    <ion-button>카드 뒤집은 횟수:{{totalClickCount}}</ion-button>
   </ion-toolbar>
 </ion-header>
 
@@ -15,9 +16,12 @@
   <ion-grid>
     <ion-row  *ngFor ="let row of rows">
       <ion-col *ngFor="let col of columns">
-        <ion-card color ="primary">
-          <ion-card-content (click)="clickCard(row, col)"></ion-card-content>
-        </ion-card>
+        <div *ngIf = "matchedCardXY.includes(row+col); else showCard"></div>
+        <ng-template #showCard>
+          <ion-card color ="primary">
+            <ion-card-content (click)="clickCard(row, col)"></ion-card-content>
+          </ion-card>
+        </ng-template>
       </ion-col>
     </ion-row>
   </ion-grid>
