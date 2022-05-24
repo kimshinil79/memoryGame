@@ -45,6 +45,14 @@ export class Tab1Page {
   totalClickCount = 0;
   audio = new Audio();
   americanBritish = ["american", "british"]
+  clickedCardColor = "pink";
+  unclickedCardColor = "green"
+  cardColor = "blue";
+  currentClicked = [];
+  firstClickedColor = "blue";
+  secondClickedColor = "pink";
+  firstClicked = false;
+  secondClicked = false;
   
   clickCard(row:string, col:string) {
 
@@ -52,6 +60,10 @@ export class Tab1Page {
     let pronouciation = this.americanBritish[rand];
     
     if (this.clickCount == 0) {
+      this.secondClicked = false;
+      this.firstClicked = true;
+      this.currentClicked = [];
+      this.currentClicked.push(row.toString()+col.toString())
       this.firstPicBlank = true;
       this.firstClickedXY = row.toString()+col.toString(); 
       this.firstSelectedPic = this.randomAnimalXYparing[this.firstClickedXY];
@@ -62,6 +74,9 @@ export class Tab1Page {
       this.audio.load();
       this.audio.play();
     } else  {
+      this.secondClicked = true;
+      this.firstClicked = false;
+      this.currentClicked.push(row.toString()+col.toString());
       this.secondClickedXY = row.toString()+col.toString();
       if (this.firstClickedXY != this.secondClickedXY) {
         this.secondPicBlank = true;
@@ -92,6 +107,7 @@ export class Tab1Page {
   }
 
   newGame() {
+    this.currentClicked=[];
     this.totalClickCount = 0;
     this.matchedCardXY = [];
     this.MGservice.picTypeNum = this.MGservice.gameDimensionX * this.MGservice.gameDimensionY /2
