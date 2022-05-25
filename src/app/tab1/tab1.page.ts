@@ -45,14 +45,14 @@ export class Tab1Page {
   totalClickCount = 0;
   audio = new Audio();
   americanBritish = ["american", "british"]
-  clickedCardColor = "pink";
-  unclickedCardColor = "green"
-  cardColor = "blue";
+  // clickedCardColor = "pink";
+  // unclickedCardColor = "green"
+  // cardColor = "blue";
   currentClicked = [];
-  firstClickedColor = "blue";
-  secondClickedColor = "pink";
-  firstClicked = false;
-  secondClicked = false;
+  // firstClickedColor = "blue";
+  // secondClickedColor = "pink";
+  firstClicked = "";
+  secondClicked = "";
   
   clickCard(row:string, col:string) {
 
@@ -60,8 +60,7 @@ export class Tab1Page {
     let pronouciation = this.americanBritish[rand];
     
     if (this.clickCount == 0) {
-      this.secondClicked = false;
-      this.firstClicked = true;
+      this.firstClicked = row.toString()+col.toString();
       this.currentClicked = [];
       this.currentClicked.push(row.toString()+col.toString())
       this.firstPicBlank = true;
@@ -74,8 +73,7 @@ export class Tab1Page {
       this.audio.load();
       this.audio.play();
     } else  {
-      this.secondClicked = true;
-      this.firstClicked = false;
+      this.secondClicked = row.toString()+col.toString();
       this.currentClicked.push(row.toString()+col.toString());
       this.secondClickedXY = row.toString()+col.toString();
       if (this.firstClickedXY != this.secondClickedXY) {
