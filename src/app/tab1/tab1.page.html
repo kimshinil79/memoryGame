@@ -18,7 +18,7 @@
       <ion-col *ngFor="let col of columns">
         <div *ngIf = "matchedCardXY.includes(row+col); else showCard"></div>
         <ng-template #showCard>
-          <ion-card color ="primary">
+          <ion-card id="card" color ="primary">
             <ion-card-content  [ngClass]="{'firstClicked': firstClicked==row+col, 'secondClicked': secondClicked==row+col, 'unclicked':!currentClicked.includes(row+col)}" (click)="clickCard(row, col)"></ion-card-content>
           </ion-card>
         </ng-template>

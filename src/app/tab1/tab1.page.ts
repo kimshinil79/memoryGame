@@ -56,6 +56,9 @@ export class Tab1Page {
   
   clickCard(row:string, col:string) {
 
+    let test = document.getElementById('card').style.width;
+    console.log("test", test);
+
     let rand = Math.floor(Math.random()*this.americanBritish.length);
     let pronouciation = this.americanBritish[rand];
     
@@ -105,6 +108,7 @@ export class Tab1Page {
   }
 
   newGame() {
+    
     this.currentClicked=[];
     this.totalClickCount = 0;
     this.matchedCardXY = [];
@@ -120,6 +124,8 @@ export class Tab1Page {
     for (let j=0;j<this.MGservice.gameDimensionY;j++) {
       this.columns.push(j.toString())
     }
+
+    
   }
 
 
