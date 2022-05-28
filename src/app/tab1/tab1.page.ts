@@ -53,10 +53,13 @@ export class Tab1Page {
   // secondClickedColor = "pink";
   firstClicked = "";
   secondClicked = "";
+  clickCountforTimer = 0;
   
   clickCard(row:string, col:string) {
 
-    let test = document.getElementById('card').style.width;
+    this.clickCountforTimer++;
+
+    let test = document.getElementById('card').style.height;
     console.log("test", test);
 
     let rand = Math.floor(Math.random()*this.americanBritish.length);
@@ -72,7 +75,6 @@ export class Tab1Page {
       this.clickCount++;
       this.secondPicBlank = false;
       this.audio.src = "../../assets/soundFolder/" + this.firstSelectedPic.slice(0, -5)+"("+pronouciation+").mp3";
-      console.log(this.audio.src)
       this.audio.load();
       this.audio.play();
     } else  {
@@ -99,11 +101,13 @@ export class Tab1Page {
       this.matchedCardXY.push(this.firstClickedXY, this.secondClickedXY);
     }
 
-    // this.nativeAudio.preloadSimple('test', '../../assets/anaconda(amerian).mp3').then(()=>console.log('haha'));
-    // this.nativeAudio.play('test');
+    if (this.clickCountforTimer == 1) {
+      this.timerStart();
+    }
 
-    
-    
+    if (this.matchedCardXY.length === this.rows.length * this.columns.length){
+      this.timerStop();
+    }
     
   }
 
@@ -118,6 +122,8 @@ export class Tab1Page {
     this.secondPicBlank = false;
     this.rows=[];
     this.columns=[];
+    this.time = "00:00.000";
+    this.clickCountforTimer = 0;
     for (let i=0;i<this.MGservice.gameDimensionX;i++){
       this.rows.push(i.toString())
     }
@@ -146,6 +152,43 @@ export class Tab1Page {
     )
 
   }
+
+  public time = "00:00.000";
+  public started = null;
+  public timebegan = null;
+
+  timerStart() {
+
+    this.timebegan = new Date();
+
+    this.started = setInterval(this.clockrunning.bind(this), 10);
+  }
+
+  timerStop() {
+    //this.time = "00:00.000";
+    clearInterval(this.started);
+  }
+
+  zeroPrefix(num, digit){
+    let zero = '';
+    for(let i = 0;i<digit;i++){
+      zero+='0';
+    }
+    return (zero+num).slice(-digit);
+  }
+
+  clockrunning() {
+    let currentTime:any = new Date();
+    let timeElapsed:any = new Date(currentTime-this.timebegan);
+
+    let min = timeElapsed.getUTCMinutes();
+    let sec = timeElapsed.getUTCSeconds();
+    let ms = timeElapsed.getUTCMilliseconds();
+
+    this.time = this.zeroPrefix(min, 2) + ":" + this.zeroPrefix(sec,2) + ":" + this.zeroPrefix(ms, 3);
+  }
+
+  
 
 }
 

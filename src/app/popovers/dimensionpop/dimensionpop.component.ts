@@ -48,8 +48,10 @@ export class DimensionpopComponent implements OnInit {
   }
 
   colUp() {
-    this.col = this.col+2;
-    console.log("colUP")
+    if (this.col <8) {
+      this.col = this.col+2;
+    }
+    
   }
 
   colDown() {
