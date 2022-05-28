@@ -1,0 +1,7 @@
+<ion-list>
+  <ion-item *ngFor ="let player of players">
+    <ion-label>{{player}}</ion-label>
+    <ion-checkbox slot="end"></ion-checkbox>
+  </ion-item>
+</ion-list>
+<ion-button (click) ="closePopover()">닫기</ion-button>

@@ -4,6 +4,7 @@ import { popoverController } from '@ionic/core';
 import { DimensionpopComponent } from '../popovers/dimensionpop/dimensionpop.component';
 import { PopoverController } from '@ionic/angular';
 import { MenuController } from '@ionic/angular';
+import { SelectPlayerComponent } from '../popovers/select-player/select-player.component';
 
 
 
@@ -30,6 +31,8 @@ export class Tab1Page {
     for (let j=0;j<this.MGservice.gameDimensionY;j++) {
       this.columns.push(j.toString())
     }
+    this.createPlayerSelectPopover();
+    
   }
 
 
@@ -47,15 +50,14 @@ export class Tab1Page {
   totalClickCount = 0;
   audio = new Audio();
   americanBritish = ["american", "british"]
-  // clickedCardColor = "pink";
-  // unclickedCardColor = "green"
-  // cardColor = "blue";
+
   currentClicked = [];
-  // firstClickedColor = "blue";
-  // secondClickedColor = "pink";
+
   firstClicked = "";
   secondClicked = "";
   clickCountforTimer = 0;
+
+
   
   clickCard(row:string, col:string) {
 
@@ -139,7 +141,7 @@ export class Tab1Page {
 
 
 
-  async createPopover() {
+  async createGameSizePopover() {
     const pop = await this.popover.create({
       component:DimensionpopComponent,
       //event: ev
@@ -153,7 +155,13 @@ export class Tab1Page {
         }
       }
     )
+  }
 
+  async createPlayerSelectPopover() {
+   const pop2 = await this.popover.create({
+     component:SelectPlayerComponent
+   });
+   return pop2.present();
   }
 
   public time = "00:00.000";

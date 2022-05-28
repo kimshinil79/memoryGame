@@ -26,6 +26,10 @@ animalList = ['kangaroo', 'rabbit', 'dog', 'cat', 'Koala', 'Gorilla', 'monkey',
 'pigeon', 'scarab', 'pelican', 'woodpecker', 'shark', 'crane', 'snail', 'earthworm', 'zebra', 'mosquito', 
 'silkworm', 'anaconda', 'mantis', 'cuckoo', 'ant', 'swallow', 'lion', 'hyena'];
 
+players = ['김신일', '민아영', '김하임', '김로하', '김하온']; 
+
+currnetplayer = [];
+
   constructor() {
    }
 
