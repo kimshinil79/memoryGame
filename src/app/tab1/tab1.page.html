@@ -4,8 +4,9 @@
     <ion-button (click)="createPopover()">게임 크기{{MGservice.gameDimensionX}}x{{MGservice.gameDimensionY}}</ion-button>
     <ion-button>카드 뒤집은 횟수:{{totalClickCount}}</ion-button>
     <ion-button>{{time}}</ion-button>
-    <ion-button (click) = timerStart()>시작</ion-button>
-    <ion-button (click) = timerStop()>중단</ion-button>
+    <ion-button slot="end">
+      <ion-menu-button color="dark"></ion-menu-button>
+    </ion-button>
   </ion-toolbar>
 </ion-header>
 

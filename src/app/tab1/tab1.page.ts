@@ -3,6 +3,7 @@ import { MGserveService } from '../services/mgserve.service';
 import { popoverController } from '@ionic/core';
 import { DimensionpopComponent } from '../popovers/dimensionpop/dimensionpop.component';
 import { PopoverController } from '@ionic/angular';
+import { MenuController } from '@ionic/angular';
 
 
 
@@ -16,6 +17,7 @@ export class Tab1Page {
   constructor(
     public MGservice: MGserveService, 
     private popover:PopoverController,
+    private menu:MenuController
   ) {}
 
   randomAnimalXYparing = {}
@@ -123,6 +125,7 @@ export class Tab1Page {
     this.rows=[];
     this.columns=[];
     this.time = "00:00.000";
+    this.timerStop();
     this.clickCountforTimer = 0;
     for (let i=0;i<this.MGservice.gameDimensionX;i++){
       this.rows.push(i.toString())

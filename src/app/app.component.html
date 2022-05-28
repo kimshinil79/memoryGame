@@ -1,3 +1,18 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+  <ion-menu side="end" menuId="first" contentId="content">
+    <ion-header>
+      <ion-toolar color="success">
+        <ion-title>메뉴</ion-title>
+      </ion-toolar>
+    </ion-header>
+    <ion-content color="light">
+      <ion-list>
+        <ion-menu-toggle auto-hide="true">
+          <ion-item>사람 추가</ion-item>
+          <ion-item>기록</ion-item>
+        </ion-menu-toggle>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+  <ion-router-outlet Id = "content"></ion-router-outlet>
 </ion-app>
