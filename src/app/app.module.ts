@@ -7,10 +7,11 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DimensionpopComponent } from './popovers/dimensionpop/dimensionpop.component';
+import { SelectPlayerComponent } from './popovers/select-player/select-player.component';
 
 @NgModule({
-  declarations: [AppComponent, DimensionpopComponent],
-  entryComponents: [DimensionpopComponent],
+  declarations: [AppComponent, DimensionpopComponent, SelectPlayerComponent],
+  entryComponents: [DimensionpopComponent, SelectPlayerComponent],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],

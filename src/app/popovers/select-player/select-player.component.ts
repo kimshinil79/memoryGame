@@ -19,6 +19,7 @@ export class SelectPlayerComponent implements OnInit {
 
   ngOnInit() {
     this.players = this.mgservice.players;
+    console.log(this.players);
   }
 
   closePopover() {
