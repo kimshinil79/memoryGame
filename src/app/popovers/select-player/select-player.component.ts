@@ -35,7 +35,18 @@ export class SelectPlayerComponent implements OnInit {
     this.mgservice.scoreList=[];
     for (let k=0;k<this.mgservice.selectedPlayer.length;k++){
       this.mgservice.scoreList.push(0);
-      console.log('haha', this.mgservice.scoreList)
+    }
+  }
+
+  selectAll(){
+    for (let player of this.players) {
+      player.nameChecked = true;
+    }
+  }
+
+  unselectAll(){
+    for (let player of this.players) {
+      player.nameChecked = false;
     }
   }
 

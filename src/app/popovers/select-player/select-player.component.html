@@ -6,4 +6,21 @@
     </ion-item>
   </div>
 </ion-list>
-<ion-button (click) ="closePopover()">닫기</ion-button>
+<ion-grid>
+  <ion-row>
+    <ion-col>
+      <ion-button expand="full" (click) ="selectAll()">모두선택</ion-button>
+    </ion-col>
+    <ion-col>
+      <ion-button expand="full" (click) ="unselectAll()">모두취소</ion-button>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+      <ion-button expand ="full" (click) ="closePopover()">닫기</ion-button>
+    </ion-col>
+    
+  </ion-row>
+</ion-grid>
+
+
