@@ -26,9 +26,18 @@ animalList = ['kangaroo', 'rabbit', 'dog', 'cat', 'Koala', 'Gorilla', 'monkey',
 'pigeon', 'scarab', 'pelican', 'woodpecker', 'shark', 'crane', 'snail', 'earthworm', 'zebra', 'mosquito', 
 'silkworm', 'anaconda', 'mantis', 'cuckoo', 'ant', 'swallow', 'lion', 'hyena'];
 
-players = ['김신일', '민아영', '김하임', '김로하', '김하온']; 
+players = [
+  {name: '김신일', nameChecked:true}, 
+  {name: '민아영', nameChecked:false},
+  {name: "김하임", nameChecked:false},
+  {name: "김로하", nameChecked:false},
+  {name: "김하온", nameChecked:false}
+]; 
 
-currnetplayer = [];
+public selectedPlayer=['김신일'];
+
+public scoreList = [];
+
 
   constructor() {
    }

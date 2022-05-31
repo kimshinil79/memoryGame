@@ -36,6 +36,20 @@ ion-grid {
     border-radius: 10px !important;
 }
 
+.myTurn {
+    border: solid !important;
+    border-width: 4px !important;
+    border-radius: 10px !important;
+    border-color :rgb(139, 219, 180) !important;
+    background-color: rgb(36, 182, 182);
+}
+
+.player {
+    text-align: center;
+    font-size: large;
+    color : rgb(187, 230, 236);
+}
+
 ion-content {
     color: yellow;
 }

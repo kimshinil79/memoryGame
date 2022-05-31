@@ -19,11 +19,24 @@ export class SelectPlayerComponent implements OnInit {
 
   ngOnInit() {
     this.players = this.mgservice.players;
-    console.log(this.players);
   }
 
   closePopover() {
     this.selectPlayerPopOver.dismiss();
+  }
+
+  checkBoxEvent() {
+    this.mgservice.selectedPlayer = [];
+    for(let player of this.players) {
+      if (player.nameChecked) {
+        this.mgservice.selectedPlayer.push(player.name);
+      }
+    }
+    this.mgservice.scoreList=[];
+    for (let k=0;k<this.mgservice.selectedPlayer.length;k++){
+      this.mgservice.scoreList.push(0);
+      console.log('haha', this.mgservice.scoreList)
+    }
   }
 
 }

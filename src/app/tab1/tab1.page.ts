@@ -25,6 +25,10 @@ export class Tab1Page {
 
   ngOnInit() {
     this.randomAnimalXYparing = this.MGservice.randomPositionPic();
+    for (let k=0;k<this.MGservice.selectedPlayer.length;k++){
+      this.MGservice.scoreList.push(0);
+      console.log('haha', this.MGservice.scoreList)
+    }
     for (let i=0;i<this.MGservice.gameDimensionX;i++){
       this.rows.push(i.toString())
     }
@@ -32,6 +36,7 @@ export class Tab1Page {
       this.columns.push(j.toString())
     }
     this.createPlayerSelectPopover();
+    
     
   }
 
@@ -57,14 +62,16 @@ export class Tab1Page {
   secondClicked = "";
   clickCountforTimer = 0;
 
+  playerNum = 0;
+  whoIsTurnIndex = 0;
+  
+
 
   
   clickCard(row:string, col:string) {
-
-    this.clickCountforTimer++;
-
-    let test = document.getElementById('card').style.height;
-    console.log("test", test);
+    if(this.MGservice.selectedPlayer.length<2){
+      this.clickCountforTimer++;
+    }    
 
     let rand = Math.floor(Math.random()*this.americanBritish.length);
     let pronouciation = this.americanBritish[rand];
@@ -91,10 +98,16 @@ export class Tab1Page {
 
         if (this.firstSelectedPic != this.secondSelectedpic) {
           this.totalClickCount++;
+          if (this.whoIsTurnIndex < this.MGservice.selectedPlayer.length-1) {
+            this.whoIsTurnIndex++;
+          } else {
+            this.whoIsTurnIndex =0;
+          }
+          
         }
         this.clickCount = 0;
         this.audio.src = "../../assets/soundFolder/" + this.secondSelectedpic.slice(0, -5)+"("+pronouciation+").mp3";
-        console.log(this.audio.src)
+        //console.log(this.audio.src)
         this.audio.load();
         this.audio.play();
       }
@@ -103,6 +116,7 @@ export class Tab1Page {
     if (this.firstSelectedPic == this.secondSelectedpic && this.clickCount == 0) {
       this.totalClickCount++;
       this.matchedCardXY.push(this.firstClickedXY, this.secondClickedXY);
+      this.MGservice.scoreList[this.whoIsTurnIndex]++;
     }
 
     if (this.clickCountforTimer == 1) {
@@ -116,7 +130,10 @@ export class Tab1Page {
   }
 
   newGame() {
-    
+
+    this.MGservice.scoreList=[];
+    this.whoIsTurnIndex = 0;
+    this.playerNum = this.MGservice.selectedPlayer.length;
     this.currentClicked=[];
     this.totalClickCount = 0;
     this.matchedCardXY = [];
@@ -134,6 +151,9 @@ export class Tab1Page {
     }
     for (let j=0;j<this.MGservice.gameDimensionY;j++) {
       this.columns.push(j.toString())
+    }
+    for (let k=0;k<this.MGservice.selectedPlayer.length;k++){
+      this.MGservice.scoreList.push(0);
     }
 
     

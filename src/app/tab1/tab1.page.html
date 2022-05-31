@@ -2,8 +2,9 @@
   <ion-toolbar>
     <ion-button (click)="newGame()">새게임</ion-button>
     <ion-button (click)="createGameSizePopover()">게임 크기{{MGservice.gameDimensionX}}x{{MGservice.gameDimensionY}}</ion-button>
-    <ion-button>카드 뒤집은 횟수:{{totalClickCount}}</ion-button>
-    <ion-button>{{time}}</ion-button>
+    <ion-button *ngIf = "MGservice.selectedPlayer.length<2">카드 뒤집은 횟수:{{totalClickCount}}</ion-button>
+    <ion-button *ngIf = "MGservice.selectedPlayer.length<2">{{time}}</ion-button>
+    <ion-button *ngIf = "MGservice.selectedPlayer.length==1">{{MGservice.selectedPlayer[0]}}</ion-button>
     <ion-button slot="end">
       <ion-menu-button color="dark"></ion-menu-button>
     </ion-button>
@@ -11,12 +12,15 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
+  <ion-grid *ngIf = "MGservice.selectedPlayer.length>1">
+    <ion-row>
+      <ion-col *ngFor = "let player of MGservice.selectedPlayer;index as i">
+        <ion-card [ngClass]="{'myTurn': i == whoIsTurnIndex }">
+          <ion-card-content class="player">{{player}}{{MGservice.scoreList[i]}}</ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
   <ion-grid>
     <ion-row  *ngFor ="let row of rows">
       <ion-col *ngFor="let col of columns">
