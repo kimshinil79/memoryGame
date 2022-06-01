@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Storage } from '@ionic/storage';
 
 
 @Injectable({
@@ -38,8 +39,12 @@ public selectedPlayer=['김신일'];
 
 public scoreList = [];
 
+public recordList = [];
 
-  constructor() {
+
+  constructor(
+    private storage:Storage
+  ) {
    }
 
    //리스트 항목을 셔플하는 함수
@@ -108,6 +113,17 @@ public scoreList = [];
     }
 
     return XYanimalArray;
+  }
+
+  saveRecord() {
+    this.storage.set('record', this.recordList).then(()=>{
+      console.log('save record!!')
+    })
+  }
+
+  addRecord(record) {
+    this.recordList.push(record);
+    this.saveRecord();
   }
 
 
