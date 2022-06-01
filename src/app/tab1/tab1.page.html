@@ -16,7 +16,7 @@
     <ion-row>
       <ion-col *ngFor = "let player of MGservice.selectedPlayer;index as i">
         <ion-card [ngClass]="{'myTurn': i == whoIsTurnIndex }">
-          <ion-card-content class="player">{{player}}{{MGservice.scoreList[i]}}</ion-card-content>
+          <ion-card-content class="player">{{player}}({{MGservice.scoreList[i]}})</ion-card-content>
         </ion-card>
       </ion-col>
     </ion-row>
