@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MGserveService } from '../services/mgserve.service';
 
 @Component({
   selector: 'app-tab2',
@@ -7,6 +8,20 @@ import { Component } from '@angular/core';
 })
 export class Tab2Page {
 
-  constructor() {}
+  constructor(
+    public MGservice: MGserveService
+  ) {}
+  
+  aaa = null;
+  ngOnInit() {
+    console.log('tab2222')
+  }
+
+  test() {
+    document.getElementById('aa').style.backgroundImage = "url('../../assets/animalPic/anaconda0.jpg')"
+    document.getElementById('aa').style.backgroundSize = "100% 100%"
+  }
+
+  
 
 }

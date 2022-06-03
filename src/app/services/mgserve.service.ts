@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Storage } from '@ionic/storage';
+//import { Storage } from '@ionic/storage';
+import { Storage } from '@capacitor/storage';
+
 
 
 @Injectable({
@@ -10,7 +12,7 @@ export class MGserveService {
   public clickedY = 0;
 
   public gameDimensionX = 4;
-  public gameDimensionY = 4; 
+  public gameDimensionY = 2; 
   
   //게임에 사용할 동물 수
   public picTypeNum = 8;
@@ -37,15 +39,26 @@ players = [
 
 public selectedPlayer=['김신일'];
 
+//private _storage: Storage | null = null;
+
 public scoreList = [];
 
 public recordList = [];
 
 
   constructor(
-    private storage:Storage
-  ) {
+    //private storage:Storage,
+  ){
+    this.init(); 
    }
+
+  async init() {
+  //    const storage = await this.storage.create();
+  //    this._storage = storage;
+  const data = await Storage.get({'key':'record'});
+  console.log('data', data.value);
+  return JSON.parse(data.value)
+  }
 
    //리스트 항목을 셔플하는 함수
    suffleArray(list){
@@ -116,14 +129,16 @@ public recordList = [];
   }
 
   saveRecord() {
-    this.storage.set('record', this.recordList).then(()=>{
-      console.log('save record!!')
-    })
+    // this._storage.set('record', this.recordList).then(()=>{
+    //   console.log('save record!!')
+    // })
+
   }
 
   addRecord(record) {
     this.recordList.push(record);
-    this.saveRecord();
+    //this.saveRecord();
+    Storage.set({key:'record', value:JSON.stringify(this.scoreList)})
   }
 
 

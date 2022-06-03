@@ -5,6 +5,7 @@
     <ion-button *ngIf = "MGservice.selectedPlayer.length<2">카드 뒤집은 횟수:{{totalClickCount}}</ion-button>
     <ion-button *ngIf = "MGservice.selectedPlayer.length<2">{{time}}</ion-button>
     <ion-button *ngIf = "MGservice.selectedPlayer.length==1">{{MGservice.selectedPlayer[0]}}</ion-button>
+    <ion-button *ngIf = "MGservice.selectedPlayer.length==1" (click)="saveRecord()">기록저장</ion-button>
     <ion-button slot="end">
       <ion-menu-button color="dark"></ion-menu-button>
     </ion-button>
@@ -22,33 +23,8 @@
     </ion-row>
   </ion-grid>
   <ion-grid>
-    <ion-row  *ngFor ="let row of rows">
-      <ion-col *ngFor="let col of columns">
-        <div *ngIf = "matchedCardXY.includes(row+col); else showCard"></div>
-        <ng-template #showCard>
-          <ion-card id="card" color ="primary">
-            <ion-card-content  [ngClass]="{'firstClicked': firstClicked==row+col, 'secondClicked': secondClicked==row+col, 'unclicked':!currentClicked.includes(row+col)}" (click)="clickCard(row, col)"></ion-card-content>
-          </ion-card>
-        </ng-template>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-  <ion-grid>
-    <ion-row>
-      <ion-col >
-        <div  *ngIf = "firstPicBlank===false ; else showPic1">
-        </div>
-        <ng-template  #showPic1>
-          <ion-img class="firstPic" src = "../../assets/animalPic/{{firstSelectedPic}}"></ion-img>
-        </ng-template>
-        
-      </ion-col>
-      <ion-col>
-        <div *ngIf = "secondPicBlank===false ; else showPic2">
-        </div>
-        <ng-template #showPic2>
-          <ion-img class="secondPic" src = "../../assets/animalPic/{{secondSelectedpic}}"></ion-img>
-        </ng-template>
+    <ion-row  *ngFor ="let row of rows" >
+      <ion-col class="cardCol" name="card" *ngFor="let col of columns" (click)="clickCard(row, col)" id={{row+col}}>
       </ion-col>
     </ion-row>
   </ion-grid>

@@ -12,14 +12,35 @@ ion-card, .card-ios, .card-md {
 
 .firstClicked {
     background-color: rgb(236, 32, 32);
+    height: 60px;
+    border: solid;
+    border-color : white;
+    border-radius: 10px;
 }
 
 .secondClicked {
     background-color: rgb(13, 76, 132);
+    height: 60px;
+    border: solid;
+    border-color : white;
+    border-radius: 10px;
 }
 
 .unclicked {
     background-color: rgb(42, 191, 214);
+    height: 60px;
+    border: solid;
+    border-color : white;
+    border-radius: 10px;
+}
+
+.cardCol {
+    height: 100px;
+    border : solid;
+    border-width: 3px;
+    border-radius: 10px;
+    border-color: white;
+    margin: 2px;
 }
 
 .firstPic {
@@ -50,6 +71,8 @@ ion-card, .card-ios, .card-md {
     padding : 0px !important;
     margin : 0px !important;
 }
+
+
 
 ion-content {
     --ion-background-color : rgb(46, 110, 179);

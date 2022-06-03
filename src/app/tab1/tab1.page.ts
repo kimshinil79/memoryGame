@@ -46,11 +46,11 @@ export class Tab1Page {
   columns = [];
   firstPicBlank = false;
   secondPicBlank = false;
-  firstClickedXY = "";
-  secondClickedXY ="";
+  firstClickedXY = "00";
+  secondClickedXY ="00";
   firstSelectedPic = "";
   secondSelectedpic = "";
-  clickCount = 0;
+  clickCount = 0; //0이면 첫번째 사진이 클릭된 것으로 인식, 1이면 두번째 사진이 클릭된 것으로 인식, 턴이 바뀌면 다시 0이 된다.
   matchedCardXY = [];
   totalClickCount = 0;
   audio = new Audio();
@@ -66,9 +66,22 @@ export class Tab1Page {
   whoIsTurnIndex = 0;
   
 
-
   
   clickCard(row:string, col:string) {
+
+    if (this.matchedCardXY.includes(row+col)) {
+      return
+    }
+
+    if (this.matchedCardXY.includes(this.firstClickedXY) && this.matchedCardXY.includes(this.secondClickedXY)) {
+      document.getElementById(this.firstClickedXY).style.backgroundImage="";
+      document.getElementById(this.secondClickedXY).style.backgroundImage="";
+      document.getElementById(this.firstClickedXY).style.backgroundColor = "none"
+      document.getElementById(this.secondClickedXY).style.backgroundColor = "none"
+      document.getElementById(this.firstClickedXY).style.border = "none"
+      document.getElementById(this.secondClickedXY).style.border = "none"
+    }
+
     if(this.MGservice.selectedPlayer.length<2){
       this.clickCountforTimer++;
     }    
@@ -77,24 +90,37 @@ export class Tab1Page {
     let pronouciation = this.americanBritish[rand];
     
     if (this.clickCount == 0) {
-      this.firstClicked = row.toString()+col.toString();
+
+      document.getElementById(this.firstClickedXY).style.backgroundImage = "";
+      document.getElementById(this.secondClickedXY).style.backgroundImage = "";
+      this.firstClickedXY = row+col; 
       this.currentClicked = [];
-      this.currentClicked.push(row.toString()+col.toString())
+      this.currentClicked.push(this.firstClickedXY)
       this.firstPicBlank = true;
-      this.firstClickedXY = row.toString()+col.toString(); 
+    
       this.firstSelectedPic = this.randomAnimalXYparing[this.firstClickedXY];
+
       this.clickCount++;
       this.secondPicBlank = false;
+      document.getElementById(this.firstClickedXY).style.backgroundImage = "url('../../assets/animalPic/"+this.firstSelectedPic+"')";
+      document.getElementById(this.firstClickedXY).style.backgroundSize = "80% 100%"
+      document.getElementById(this.firstClickedXY).style.backgroundRepeat = "no-repeat"
+      document.getElementById(this.firstClickedXY).style.backgroundPosition = "center";
       this.audio.src = "../../assets/soundFolder/" + this.firstSelectedPic.slice(0, -5)+"("+pronouciation+").mp3";
       this.audio.load();
       this.audio.play();
     } else  {
-      this.secondClicked = row.toString()+col.toString();
-      this.currentClicked.push(row.toString()+col.toString());
-      this.secondClickedXY = row.toString()+col.toString();
+      this.secondClickedXY = row+col;
+      this.currentClicked.push(this.secondClickedXY);
+      
       if (this.firstClickedXY != this.secondClickedXY) {
         this.secondPicBlank = true;
         this.secondSelectedpic = this.randomAnimalXYparing[this.secondClickedXY];
+
+        document.getElementById(this.secondClickedXY).style.backgroundImage = "url('../../assets/animalPic/"+this.secondSelectedpic+"')";
+        document.getElementById(this.secondClickedXY).style.backgroundSize = "80% 100%"
+        document.getElementById(this.secondClickedXY).style.backgroundRepeat = "no-repeat";
+        document.getElementById(this.secondClickedXY).style.backgroundPosition = "center"
 
         if (this.firstSelectedPic != this.secondSelectedpic) {
           this.totalClickCount++;
@@ -107,7 +133,6 @@ export class Tab1Page {
         }
         this.clickCount = 0;
         this.audio.src = "../../assets/soundFolder/" + this.secondSelectedpic.slice(0, -5)+"("+pronouciation+").mp3";
-        //console.log(this.audio.src)
         this.audio.load();
         this.audio.play();
       }
@@ -156,9 +181,16 @@ export class Tab1Page {
       this.MGservice.scoreList.push(0);
     }
 
-    
+    let colTag = document.getElementsByName('card');
+    for (let i=0;i<colTag.length;i++) {
+      let col = colTag[i];
+      col.style.backgroundImage = "";
+      col.style.border = "solid";
+      col.style.borderColor = "white";
+      col.style.borderWidth = "3px";
+    }
+      
   }
-
 
 
   async createGameSizePopover() {
@@ -217,6 +249,10 @@ export class Tab1Page {
     let ms = timeElapsed.getUTCMilliseconds();
 
     this.time = this.zeroPrefix(min, 2) + ":" + this.zeroPrefix(sec,2) + ":" + this.zeroPrefix(ms, 3);
+  }
+
+  saveRecord() {
+    this.MGservice.addRecord(this.time);
   }
 
   

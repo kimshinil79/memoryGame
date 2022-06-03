@@ -2,7 +2,7 @@
   <div *ngFor ="let player of players">
     <ion-item >
       <ion-label>{{player.name}}</ion-label>
-      <ion-checkbox slot="end" [(ngModel)]="player.nameChecked" (ionChange) = "checkBoxEvent()"></ion-checkbox>
+      <ion-checkbox slot="end" [(ngModel)]="player.nameChecked" (ionChange) = "checkBoxEvent(player)"></ion-checkbox>
     </ion-item>
   </div>
 </ion-list>

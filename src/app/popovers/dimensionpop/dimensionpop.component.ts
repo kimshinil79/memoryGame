@@ -37,8 +37,9 @@ export class DimensionpopComponent implements OnInit {
 
 
   rowUp() {
-    this.row = this.row+2;
-    console.log("rowup")
+    if (this.row < 10) {
+      this.row = this.row+2;
+    }
   }
 
   rowDown() {

@@ -14,5 +14,23 @@
   </ion-header>
 
   <app-explore-container name="Tab 2 page"></app-explore-container>
-  <p><img src="../../assets/animalPic/anaconda1.jpg"></p>
+  test
+  <ion-button (click)="test()"></ion-button>
+  <ion-list>
+    <div *ngFor = "let record of MGservice.recordList">
+      <ion-item>
+        <ion-label>{{record}}</ion-label>
+      </ion-item>
+    </div>
+  </ion-list>
+  <ion-grid>
+    <ion-row>
+      <ion-col class="aa" id="aa">aa</ion-col>
+      <ion-col class="bb">bb</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>cc</ion-col>
+      <ion-col>dd</ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

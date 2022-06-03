@@ -25,13 +25,20 @@ export class SelectPlayerComponent implements OnInit {
     this.selectPlayerPopOver.dismiss();
   }
 
-  checkBoxEvent() {
-    this.mgservice.selectedPlayer = [];
-    for(let player of this.players) {
-      if (player.nameChecked) {
-        this.mgservice.selectedPlayer.push(player.name);
+  checkBoxEvent(player) {
+    if (player.nameChecked) {
+      this.mgservice.selectedPlayer.push(player.name)
+    }
+    
+    if (!player.nameChecked) {
+      if ( this.mgservice.selectedPlayer.includes(player.name)) {
+        let indexPlayer = this.mgservice.selectedPlayer.indexOf(player.name);
+        console.log('index', indexPlayer)
+        this.mgservice.selectedPlayer.splice(indexPlayer, 1)
       }
     }
+    console.log(this.mgservice.selectedPlayer)
+
     this.mgservice.scoreList=[];
     for (let k=0;k<this.mgservice.selectedPlayer.length;k++){
       this.mgservice.scoreList.push(0);
