@@ -46,13 +46,13 @@ export class SelectPlayerComponent implements OnInit {
   }
 
   selectAll(){
-    for (let player of this.players) {
+    for (let player of this.mgservice.players) {
       player.nameChecked = true;
     }
   }
 
   unselectAll(){
-    for (let player of this.players) {
+    for (let player of this.mgservice.players) {
       player.nameChecked = false;
     }
   }
