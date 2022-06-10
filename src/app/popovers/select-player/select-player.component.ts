@@ -27,13 +27,14 @@ export class SelectPlayerComponent implements OnInit {
 
   checkBoxEvent(player) {
     if (player.nameChecked) {
-      this.mgservice.selectedPlayer.push(player.name)
+      if (!this.mgservice.selectedPlayer.includes(player.name)) {
+        this.mgservice.selectedPlayer.push(player.name)
+      }
     }
     
     if (!player.nameChecked) {
       if ( this.mgservice.selectedPlayer.includes(player.name)) {
         let indexPlayer = this.mgservice.selectedPlayer.indexOf(player.name);
-        console.log('index', indexPlayer)
         this.mgservice.selectedPlayer.splice(indexPlayer, 1)
       }
     }
@@ -46,8 +47,10 @@ export class SelectPlayerComponent implements OnInit {
   }
 
   selectAll(){
+    this.mgservice.selectedPlayer = [];
     for (let player of this.mgservice.players) {
       player.nameChecked = true;
+      this.mgservice.selectedPlayer.push(player.name);
     }
   }
 
@@ -55,6 +58,7 @@ export class SelectPlayerComponent implements OnInit {
     for (let player of this.mgservice.players) {
       player.nameChecked = false;
     }
+    this.mgservice.selectedPlayer = [];
   }
 
 }

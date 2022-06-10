@@ -12,7 +12,7 @@ export class MGserveService {
   public clickedY = 0;
 
   public gameDimensionX = 4;
-  public gameDimensionY = 2; 
+  public gameDimensionY = 4; 
   
   //게임에 사용할 동물 수
   public picTypeNum = 8;
