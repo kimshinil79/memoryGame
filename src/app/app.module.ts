@@ -13,7 +13,7 @@ import { SelectPlayerComponent } from './popovers/select-player/select-player.co
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideAuth,getAuth } from '@angular/fire/auth';
-import { provideFirestore,getFirestore } from '@angular/fire/firestore';
+import { provideFirestore,getFirestore, enableIndexedDbPersistence } from '@angular/fire/firestore';
 
 @NgModule({
   declarations: [AppComponent, DimensionpopComponent, SelectPlayerComponent],
@@ -26,7 +26,12 @@ import { provideFirestore,getFirestore } from '@angular/fire/firestore';
     }), 
     IonicModule.forRoot(), 
     AppRoutingModule, 
-    FormsModule, provideFirebaseApp(() => initializeApp(environment.firebase)), provideAuth(() => getAuth()), provideFirestore(() => getFirestore())],
+    FormsModule, provideFirebaseApp(() => initializeApp(environment.firebase)), provideAuth(() => getAuth()), 
+    provideFirestore(() => {
+      const firestore = getFirestore();
+      enableIndexedDbPersistence(firestore);
+      return firestore;
+    } )],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
