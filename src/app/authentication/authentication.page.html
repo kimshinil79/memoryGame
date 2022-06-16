@@ -14,4 +14,7 @@
  [actionButtonText]="actionButtonText"
  [isPasswordResetPage]="url === 'reset'">
 </app-auth-form>
+
+<ion-button expand="block" fill="clear" routerLink="/signup" *ngIf="url && url !=='signup'">새계정 만들기</ion-button>
+<ion-button expand="block" fill="clear" routerLink="/reset" *ngIf="url && url !=='reset'">비번 찾기</ion-button>
 </ion-content>

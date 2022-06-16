@@ -16,6 +16,7 @@ export class AuthenticationPage implements OnInit {
 
   ngOnInit() {
     this.url = this.router.url.substr(1);
+    console.log('hha', this.router.url)
     if (this.url == 'signup') {
       this.pageTitle = "Create Your Account";
       this.actionButtonText = "계정생성";
