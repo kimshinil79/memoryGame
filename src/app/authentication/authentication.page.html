@@ -1,9 +1,17 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>authentication</ion-title>
+    <ion-buttons *ngIf="url && url !== 'login'" slot="start">
+      <ion-back-button defaultHref="/login"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{pageTitle}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
- <app-auth-form></app-auth-form>
+ <app-auth-form 
+ *ngIf="url" 
+ (formSubmitted)="handleUserCredentials($event)"
+ [actionButtonText]="actionButtonText"
+ [isPasswordResetPage]="url === 'reset'">
+</app-auth-form>
 </ion-content>

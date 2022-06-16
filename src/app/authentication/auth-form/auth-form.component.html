@@ -1,3 +1,18 @@
 <p>
   auth-form works!
 </p>
+<form [formGroup]="authForm">
+  <ion-item>
+    <ion-label position = "stacked">이메일</ion-label>
+    <ion-input formControlName = "email" type="email" placeholder="너의 이메일을 넣으시지!"></ion-input>
+  </ion-item>
+
+  <ion-item *ngIf="!isPasswordResetPage">
+    <ion-label position="stacked">비밀번호</ion-label>
+    <ion-input formControlName="password" type="password" placeholder="비밀번호 넣으라구"></ion-input>
+  </ion-item>
+
+  <ion-button (click)="submitCredentials(authForm)" expand="block" [disabled]="!authForm.valid">
+    {{actionButtonText}}
+  </ion-button>
+</form>
