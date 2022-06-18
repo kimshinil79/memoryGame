@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthenticationService } from './authentication.service';
 
 @Component({
   selector: 'app-authentication',
@@ -12,7 +13,9 @@ export class AuthenticationPage implements OnInit {
   pageTitle = "Sign In";
   actionButtonText = "Sign In";
 
-  constructor(private readonly router:Router) { }
+  constructor(
+    private readonly router:Router,
+    private readonly auth: AuthenticationService) { }
 
   ngOnInit() {
     this.url = this.router.url.substr(1);
@@ -45,14 +48,33 @@ export class AuthenticationPage implements OnInit {
 
   async login(email:string, password:string) {
     console.log(email, password)
+    try {
+      await this.auth.login(email, password);
+      this.router.navigateByUrl('/tabs');
+    } catch(error) {
+      console.log("can't login!!")
+    }
   }
 
   async signup(email:string, password:string) {
     console.log(email, password);
+    try {
+      await this.auth.signup(email, password);
+      this.router.navigateByUrl('/tabs');
+    } catch(error) {
+      console.log(error);
+    }
   }
 
   async resetPassword(email:string) {
     console.log(email);
+    try {
+      await this.auth.resetPassword(email);
+      console.log('email sent')
+      this.router.navigateByUrl('/tabs');
+    } catch(error) {
+      console.log('error : ', error);
+    }
   }
 
 }
