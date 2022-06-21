@@ -2,14 +2,14 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  // {
-  //   path: '',
-  //   loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
-  // },
   {
     path: '',
-    loadChildren: () => import('./authentication/authentication.module').then( m => m.AuthenticationPageModule)
-  }, 
+    loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
+  },
+  // {
+  //   path: '',
+  //   loadChildren: () => import('./authentication/authentication.module').then( m => m.AuthenticationPageModule)
+  // }, 
   {
     path:'login',
     loadChildren: () => import('./authentication/authentication.module').then( m => m.AuthenticationPageModule)
