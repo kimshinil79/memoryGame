@@ -38,7 +38,6 @@ export class SelectPlayerComponent implements OnInit {
         this.mgservice.selectedPlayer.splice(indexPlayer, 1)
       }
     }
-    console.log(this.mgservice.selectedPlayer)
 
     this.mgservice.scoreList=[];
     for (let k=0;k<this.mgservice.selectedPlayer.length;k++){

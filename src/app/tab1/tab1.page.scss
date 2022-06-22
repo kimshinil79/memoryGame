@@ -4,6 +4,12 @@ ion-card, .card-ios, .card-md {
     border: 0px !important;
     }
 
+ion-button, .card-ios, .card-md {
+    padding: 0px !important;
+    //margin : 0px !important;
+    border: 0px !important;
+}
+
 
 // ion-grid {
 //     --ion-grid-padding: 10px;

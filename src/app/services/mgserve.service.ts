@@ -43,7 +43,13 @@ players = [
   {name: "김하온", nameChecked:false}
 ]; 
 
+categories = [
+  {name: '동물', nameChecked:true}, 
+  {name: '과일&채소', nameChecked:false}
+];
+
 public selectedPlayer=['김신일'];
+public selectedCategory=['animalList']
 
 //private _storage: Storage | null = null;
 
