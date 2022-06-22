@@ -29,6 +29,12 @@ animalList = ['kangaroo', 'rabbit', 'dog', 'cat', 'Koala', 'Gorilla', 'monkey',
 'pigeon', 'scarab', 'pelican', 'woodpecker', 'shark', 'crane', 'snail', 'earthworm', 'zebra', 'mosquito', 
 'silkworm', 'anaconda', 'mantis', 'cuckoo', 'ant', 'swallow', 'lion', 'hyena'];
 
+fruitVegeList = ['apple',  'apricot',  'avocado',  'banana', 'Blueberries', 'broccoli', 'cabbage', 'carrot', 'cherry', 'coconut', 
+'corn', 'cucumber', 'eggplant', 'fig', 'garlic', 'ginger', 'Ginseng', 'grape', 'grapefruit', 'Jujube', 'Kiwi', 'lemon',
+ 'Lettuce',  'mango', 'melon', 'mushroom', 'onion', 'orange', 'palm', 'parsley', 'peach', 'pepper', 'pickle', 'pimento',
+ 'pineapple', 'plum', 'Pomegranate', 'potato', 'pumpkin', 'radish', 'Sesame', 'spinach', 'Starfruit', 'Strawberry',
+  'sweet potato', 'Virgil', 'watermelon']
+
 players = [
   {name: '김신일', nameChecked:true}, 
   {name: '민아영', nameChecked:false},
@@ -75,7 +81,7 @@ public recordList = [];
 
    //list 내의 항목 중 주어진 갯수의 항목을 무작위로 첫번째부터 축출하는 함수
    pickSelectedNumPicFromList(pickNUm:number) { 
-      return this.suffleArray(this.animalList).slice(0, pickNUm)
+      return this.suffleArray(this.fruitVegeList).slice(0, pickNUm)
    }
 
 
@@ -109,12 +115,12 @@ public recordList = [];
 
   //좌표와 이미지파일을 매치시키는 함수
   randomPositionPic(){
-    let animalFileName = [];
+    let itemFileName = [];
     let randomAnimalName = this.pickSelectedNumPicFromList(this.picTypeNum);
     let randomIndex = Math.floor(Math.random()*5);
     for(let animal of randomAnimalName) {
-      animalFileName.push(animal+randomIndex.toString()+".jpg");
-      animalFileName.push(animal+randomIndex.toString()+".jpg");
+      itemFileName.push(animal+randomIndex.toString()+".jpg");
+      itemFileName.push(animal+randomIndex.toString()+".jpg");
 
     }
     let randomCoordiate  = this.suffleArray(this.makeXYparing(this.gameDimensionX, this.gameDimensionY))
@@ -122,7 +128,7 @@ public recordList = [];
 
 
     for (let i=0;i<randomCoordiate.length;i++) {
-      XYanimalArray[randomCoordiate[i]] = animalFileName[i];
+      XYanimalArray[randomCoordiate[i]] = itemFileName[i];
     }
 
     return XYanimalArray;

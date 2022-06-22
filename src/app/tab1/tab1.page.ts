@@ -102,7 +102,7 @@ export class Tab1Page {
 
       this.clickCount++;
       this.secondPicBlank = false;
-      document.getElementById(this.firstClickedXY).style.backgroundImage = "url('../../assets/animalPic/"+this.firstSelectedPic+"')";
+      document.getElementById(this.firstClickedXY).style.backgroundImage = "url('../../assets/fruitVege/"+this.firstSelectedPic+"')";
       document.getElementById(this.firstClickedXY).style.backgroundSize = "80% 100%"
       document.getElementById(this.firstClickedXY).style.backgroundRepeat = "no-repeat"
       document.getElementById(this.firstClickedXY).style.backgroundPosition = "center";
@@ -117,7 +117,7 @@ export class Tab1Page {
         this.secondPicBlank = true;
         this.secondSelectedpic = this.randomAnimalXYparing[this.secondClickedXY];
 
-        document.getElementById(this.secondClickedXY).style.backgroundImage = "url('../../assets/animalPic/"+this.secondSelectedpic+"')";
+        document.getElementById(this.secondClickedXY).style.backgroundImage = "url('../../assets/fruitVege/"+this.secondSelectedpic+"')";
         document.getElementById(this.secondClickedXY).style.backgroundSize = "80% 100%"
         document.getElementById(this.secondClickedXY).style.backgroundRepeat = "no-repeat";
         document.getElementById(this.secondClickedXY).style.backgroundPosition = "center"
