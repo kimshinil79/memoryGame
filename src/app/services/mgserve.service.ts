@@ -33,7 +33,7 @@ fruitVegeList = ['apple',  'apricot',  'avocado',  'banana', 'Blueberries', 'bro
 'corn', 'cucumber', 'eggplant', 'fig', 'garlic', 'ginger', 'Ginseng', 'grape', 'grapefruit', 'Jujube', 'Kiwi', 'lemon',
  'Lettuce',  'mango', 'melon', 'mushroom', 'onion', 'orange', 'palm', 'parsley', 'peach', 'pepper', 'pickle', 'pimento',
  'pineapple', 'plum', 'Pomegranate', 'potato', 'pumpkin', 'radish', 'Sesame', 'spinach', 'Starfruit', 'Strawberry',
-  'sweet potato', 'Virgil', 'watermelon']
+  'sweet potato', 'watermelon']
 
 players = [
   {name: '김신일', nameChecked:true}, 
