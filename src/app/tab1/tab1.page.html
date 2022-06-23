@@ -1,6 +1,6 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-button (click)="newGame()">새게임</ion-button>
+    <ion-button (click)="newGame()" [disabled]="!MGservice.newGameButtonValid">새게임</ion-button> 
     <ion-button (click)="createGameSizePopover()">게임 크기{{MGservice.gameDimensionX}}x{{MGservice.gameDimensionY}}</ion-button>
     <ion-button *ngIf = "MGservice.selectedPlayer.length<2">카드 뒤집은 횟수:{{totalClickCount}}</ion-button>
     <ion-button *ngIf = "MGservice.selectedPlayer.length<2">{{time}}</ion-button>

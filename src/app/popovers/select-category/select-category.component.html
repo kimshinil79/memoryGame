@@ -1,5 +1,5 @@
 <ion-list>
-  <div *ngFor ="let category of categories">
+  <div *ngFor ="let category of mgservice.categories">
     <ion-item >
       <ion-label>{{category.name}}</ion-label>
       <ion-checkbox slot="end" [(ngModel)]="category.nameChecked" (ionChange) = "checkBoxEvent(category)"></ion-checkbox>
@@ -17,7 +17,7 @@
   </ion-row>
   <ion-row>
     <ion-col>
-      <ion-button expand ="full" (click) ="closePopover()">닫기</ion-button>
+      <ion-button expand ="full" (click) ="closePopover()" [disabled]="!closeButtonValid" >닫기</ion-button>
     </ion-col>
     
   </ion-row>

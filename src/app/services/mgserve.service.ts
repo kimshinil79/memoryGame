@@ -44,12 +44,16 @@ players = [
 ]; 
 
 categories = [
-  {name: '동물', nameChecked:true}, 
-  {name: '과일&채소', nameChecked:false}
+  {name: '동물', engName:'animalList', nameChecked:true}, 
+  {name: '과일&채소', engName:'fruitVegeList', nameChecked:false}
 ];
 
 public selectedPlayer=['김신일'];
 public selectedCategory=['animalList']
+public selectedCategoryItems = this.animalList;
+
+newGameButtonValid = true;
+
 
 //private _storage: Storage | null = null;
 
@@ -87,7 +91,7 @@ public recordList = [];
 
    //list 내의 항목 중 주어진 갯수의 항목을 무작위로 첫번째부터 축출하는 함수
    pickSelectedNumPicFromList(pickNUm:number) { 
-      return this.suffleArray(this.fruitVegeList).slice(0, pickNUm)
+      return this.suffleArray(this.selectedCategoryItems).slice(0, pickNUm)
    }
 
 
@@ -122,22 +126,23 @@ public recordList = [];
   //좌표와 이미지파일을 매치시키는 함수
   randomPositionPic(){
     let itemFileName = [];
-    let randomAnimalName = this.pickSelectedNumPicFromList(this.picTypeNum);
+    let randomItemName = this.pickSelectedNumPicFromList(this.picTypeNum);
+    console.log('randomItemName', randomItemName)
     let randomIndex = Math.floor(Math.random()*5);
-    for(let animal of randomAnimalName) {
-      itemFileName.push(animal+randomIndex.toString()+".jpg");
-      itemFileName.push(animal+randomIndex.toString()+".jpg");
+    for(let item of randomItemName) {
+      itemFileName.push(item+randomIndex.toString()+".jpg");
+      itemFileName.push(item+randomIndex.toString()+".jpg");
 
     }
     let randomCoordiate  = this.suffleArray(this.makeXYparing(this.gameDimensionX, this.gameDimensionY))
-    let XYanimalArray = {};
+    let XYitemArray = {};
 
 
     for (let i=0;i<randomCoordiate.length;i++) {
-      XYanimalArray[randomCoordiate[i]] = itemFileName[i];
+      XYitemArray[randomCoordiate[i]] = itemFileName[i];
     }
 
-    return XYanimalArray;
+    return XYitemArray;
   }
 
   saveRecord() {

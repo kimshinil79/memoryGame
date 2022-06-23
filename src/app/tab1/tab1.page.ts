@@ -21,10 +21,11 @@ export class Tab1Page {
     private menu:MenuController
   ) {}
 
-  randomAnimalXYparing = {}
+  randomItemXYparing = {}
 
   ngOnInit() {
-    this.randomAnimalXYparing = this.MGservice.randomPositionPic();
+    console.log(this.MGservice.selectedCategoryItems);
+    this.randomItemXYparing = this.MGservice.randomPositionPic();
     for (let k=0;k<this.MGservice.selectedPlayer.length;k++){
       this.MGservice.scoreList.push(0);
       console.log('haha', this.MGservice.scoreList)
@@ -36,6 +37,9 @@ export class Tab1Page {
       this.columns.push(j.toString())
     }
     this.createPlayerSelectPopover();
+    if (this.MGservice.selectedCategoryItems.length >0) {
+      this.MGservice.newGameButtonValid = true;
+    }
     
     
   }
@@ -64,6 +68,8 @@ export class Tab1Page {
 
   playerNum = 0;
   whoIsTurnIndex = 0;
+
+
   
 
   
@@ -98,11 +104,11 @@ export class Tab1Page {
       this.currentClicked.push(this.firstClickedXY)
       this.firstPicBlank = true;
     
-      this.firstSelectedPic = this.randomAnimalXYparing[this.firstClickedXY];
+      this.firstSelectedPic = this.randomItemXYparing[this.firstClickedXY];
 
       this.clickCount++;
       this.secondPicBlank = false;
-      document.getElementById(this.firstClickedXY).style.backgroundImage = "url('../../assets/fruitVege/"+this.firstSelectedPic+"')";
+      document.getElementById(this.firstClickedXY).style.backgroundImage = "url('../../assets/Pic/"+this.firstSelectedPic+"')";
       document.getElementById(this.firstClickedXY).style.backgroundSize = "80% 100%"
       document.getElementById(this.firstClickedXY).style.backgroundRepeat = "no-repeat"
       document.getElementById(this.firstClickedXY).style.backgroundPosition = "center";
@@ -115,9 +121,9 @@ export class Tab1Page {
       
       if (this.firstClickedXY != this.secondClickedXY) {
         this.secondPicBlank = true;
-        this.secondSelectedpic = this.randomAnimalXYparing[this.secondClickedXY];
+        this.secondSelectedpic = this.randomItemXYparing[this.secondClickedXY];
 
-        document.getElementById(this.secondClickedXY).style.backgroundImage = "url('../../assets/fruitVege/"+this.secondSelectedpic+"')";
+        document.getElementById(this.secondClickedXY).style.backgroundImage = "url('../../assets/Pic/"+this.secondSelectedpic+"')";
         document.getElementById(this.secondClickedXY).style.backgroundSize = "80% 100%"
         document.getElementById(this.secondClickedXY).style.backgroundRepeat = "no-repeat";
         document.getElementById(this.secondClickedXY).style.backgroundPosition = "center"
@@ -163,7 +169,7 @@ export class Tab1Page {
     this.totalClickCount = 0;
     this.matchedCardXY = [];
     this.MGservice.picTypeNum = this.MGservice.gameDimensionX * this.MGservice.gameDimensionY /2
-    this.randomAnimalXYparing = this.MGservice.randomPositionPic();
+    this.randomItemXYparing = this.MGservice.randomPositionPic();
     this.firstPicBlank = false;
     this.secondPicBlank = false;
     this.rows=[];
