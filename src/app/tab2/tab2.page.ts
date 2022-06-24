@@ -22,6 +22,11 @@ export class Tab2Page {
     document.getElementById('aa').style.backgroundSize = "100% 100%"
   }
 
+  test2() {
+    document.getElementById('bb').style.backgroundImage = "url('../../assets/Pic/orange4.jpg')"
+    this.MGservice.readFile('../../assets/Pic/orange4.jpg');
+  }
+
   
 
 }

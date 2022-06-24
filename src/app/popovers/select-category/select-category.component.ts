@@ -26,24 +26,33 @@ export class SelectCategoryComponent implements OnInit {
 
   checkBoxEvent(category) {
     if(category.nameChecked) {
-      if(!this.mgservice.selectedCategory.includes(category.name)) {
-        this.mgservice.selectedCategory.push(category.name);
-        for ( let item of this.mgservice[category.engName] ) {
-          if (!this.mgservice.selectedCategoryItems.includes(item)) {
-            this.mgservice.selectedCategoryItems.push(item)
-          }          
+      if(!this.mgservice.selectedCategory.includes(category.engName)) {
+        this.mgservice.selectedCategory.push(category.engName);
+        console.log('selectedCategory', this.mgservice.selectedCategory)
+        this.mgservice.selectedCategoryItems = [];
+        for (let category of this.mgservice.selectedCategory) {
+          for ( let item of this.mgservice[category] ) {
+            if (!this.mgservice.selectedCategoryItems.includes(item)) {
+              this.mgservice.selectedCategoryItems.push(item)
+            }          
+          }
         }
+        
       }
     }
 
     if(!category.nameChecked) {
-      if(this.mgservice.selectedCategory.includes(category.name)) {
-        let indexCategory = this.mgservice.selectedCategory.indexOf(category.name);
+      if(this.mgservice.selectedCategory.includes(category.engName)) {
+        let indexCategory = this.mgservice.selectedCategory.indexOf(category.engName);
         this.mgservice.selectedCategory.splice(indexCategory, 1);
-        for (let item2 of this.mgservice[category.engName]) {
-          let indexItem = this.mgservice.selectedCategoryItems.indexOf(item2);
-          this.mgservice.selectedCategoryItems.splice(indexItem, 1)
-        }        
+        this.mgservice.selectedCategoryItems = [];
+        for (let category of this.mgservice.selectedCategory) {
+          for ( let item of this.mgservice[category] ) {
+            if (!this.mgservice.selectedCategoryItems.includes(item)) {
+              this.mgservice.selectedCategoryItems.push(item)
+            }          
+          }
+        }       
       }
 
     }
@@ -64,7 +73,7 @@ export class SelectCategoryComponent implements OnInit {
     this.mgservice.selectedCategoryItems = [];
     for (let category of this.mgservice.categories) {
       category.nameChecked = true;
-      this.mgservice.selectedCategory.push(category.name)
+      this.mgservice.selectedCategory.push(category.engName)
       for (let item of this.mgservice[category.engName]) {
         this.mgservice.selectedCategoryItems.push(item)
       }

@@ -145,6 +145,15 @@ public recordList = [];
     return XYitemArray;
   }
 
+  //파일 읽었나 못읽었나 확인하는 함수
+  readFile(file) {
+    let req = new XMLHttpRequest();
+    req.open("GET", file, false);
+    req.send(null);
+    let headers = req.status;
+    console.log(headers)
+  }
+
   saveRecord() {
     // this._storage.set('record', this.recordList).then(()=>{
     //   console.log('save record!!')
