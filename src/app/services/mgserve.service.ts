@@ -35,6 +35,12 @@ fruitVegeList = ['apple',  'apricot',  'avocado',  'banana', 'Blueberries', 'bro
  'pineapple', 'plum', 'Pomegranate', 'potato', 'pumpkin', 'radish', 'Sesame', 'spinach', 'Starfruit', 'Strawberry',
   'sweet potato', 'watermelon']
 
+  school = ['school', 'book', 'friend', 'teacher', 'table', 'pencil', 'blackboard', 'principal', 'classroom', 'playground', 'canteen',
+ 'lunch', 'exam', 'bus', 'restroom', 'hallway', 'window', 'presentation', 'notebook', 'piano', 'computer', 'violin', 'cooking', 'picnic']
+
+ nature = ['mountain',  'river', 'lake', 'ocean', 'space', 'tree', 'flower', 'wind', 'typhoon', 'tide', 'sky', 'waterfall', 'rain', 'snow',
+ 'fog', 'sun', 'cloud', 'forest', 'rock', 'soil', 'moon', 'jungle', 'desert', 'earthquake', 'iceberg', 'beach', 'volcano', 'lightning']
+
 players = [
   {name: '김신일', nameChecked:true}, 
   {name: '민아영', nameChecked:false},
@@ -45,7 +51,9 @@ players = [
 
 categories = [
   {name: '동물', engName:'animalList', nameChecked:true}, 
-  {name: '과일&채소', engName:'fruitVegeList', nameChecked:false}
+  {name: '과일&채소', engName:'fruitVegeList', nameChecked:false},
+  {name: '학교', engName: 'school', nameChecked:false},
+  {name: '자연', engName: 'nature', nameChecked:false}
 ];
 
 public selectedPlayer=['김신일'];
