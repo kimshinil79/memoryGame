@@ -72,7 +72,6 @@ public recordList = [];
   //    const storage = await this.storage.create();
   //    this._storage = storage;
   const data = await Storage.get({'key':'record'});
-  console.log('data', data.value);
   return JSON.parse(data.value)
   }
 
@@ -127,7 +126,6 @@ public recordList = [];
   randomPositionPic(){
     let itemFileName = [];
     let randomItemName = this.pickSelectedNumPicFromList(this.picTypeNum);
-    console.log('randomItemName', randomItemName)
     let randomIndex = Math.floor(Math.random()*5);
     for(let item of randomItemName) {
       itemFileName.push(item+randomIndex.toString()+".jpg");

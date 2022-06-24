@@ -28,7 +28,6 @@ export class SelectCategoryComponent implements OnInit {
     if(category.nameChecked) {
       if(!this.mgservice.selectedCategory.includes(category.engName)) {
         this.mgservice.selectedCategory.push(category.engName);
-        console.log('selectedCategory', this.mgservice.selectedCategory)
         this.mgservice.selectedCategoryItems = [];
         for (let category of this.mgservice.selectedCategory) {
           for ( let item of this.mgservice[category] ) {
@@ -58,11 +57,9 @@ export class SelectCategoryComponent implements OnInit {
     }
 
     if (this.mgservice.selectedCategoryItems.length > 0) {
-      console.log("zzz?", this.mgservice.selectedCategoryItems)
       this.closeButtonValid = true;
       this.mgservice.newGameButtonValid = true;
     } else {
-      console.log('zero')
       this.closeButtonValid = false;
       this.mgservice.newGameButtonValid = false;
     }
