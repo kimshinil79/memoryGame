@@ -17,22 +17,22 @@ export class MGserveService {
   //게임에 사용할 동물 수
   public picTypeNum = 8;
 
-animalList = ['kangaroo', 'rabbit', 'dog', 'cat', 'Koala', 'Gorilla', 'monkey', 
-'whale', 'camel', 'snake', 'seal', 'mouse', 'cow', 'horse', 'pig', 'turtle', 'Crocodile', 
-'tiger', 'leopard', 'Cheetah', 'wolf', 'fox', 'skunk', 'mole', 'Dolphin', 'lizard', 'Eagle', 
-'Unicorn', 'lobster', 'starfish', 'giraffe', 'Crow', 'duck', 'parrot', 'owl', 'Sparrow', 
-'oriole', 'butterfly', 'dragonfly', 'iguana', 'chameleon', 'anteater', 'Spider', 'carp', 
-'bear', 'Penguin', 'goose', 'bat', 'Chick', 'chicken', 'boar', 'Seagull', 'rhino', 'deer', 
-'elephant', 'Hippo', 'squirrel', 'Stingray', 'meerkat', 'cobra', 'hippocampus', 'toad', 'magpie', 
-'Blowfish', 'octopus', 'squid', 'orangutan', 'jellyfish', 'platypus', 'raccoon', 'sheep', 'peacock', 
-'frog', 'ostrich', 'komodo dragon', 'cicada', 'stag beetle', 'hawk', 'crab', 'beetle', 'bee', 'Goat', 
+animalList = ['kangaroo', 'rabbit', 'dog', 'cat', 'Koala', 'gorilla', 'monkey', 
+'whale', 'camel', 'snake', 'seal', 'mouse', 'cow', 'horse', 'pig', 'turtle', 'crocodile', 
+'tiger', 'leopard', 'cheetah', 'wolf', 'fox', 'skunk', 'mole', 'dolphin', 'lizard', 'eagle', 
+'unicorn', 'lobster', 'starfish', 'giraffe', 'crow', 'duck', 'parrot', 'owl', 'sparrow', 
+'oriole', 'butterfly', 'dragonfly', 'iguana', 'chameleon', 'anteater', 'spider', 'carp', 
+'bear', 'penguin', 'goose', 'bat', 'chick', 'chicken', 'boar', 'seagull', 'rhino', 'deer', 
+'elephant', 'hippo', 'squirrel', 'stingray', 'meerkat', 'cobra', 'hippocampus', 'toad', 'magpie', 
+'blowfish', 'octopus', 'squid', 'orangutan', 'jellyfish', 'platypus', 'raccoon', 'sheep', 'peacock', 
+'frog', 'ostrich', 'komodo dragon', 'cicada', 'stag beetle', 'hawk', 'crab', 'beetle', 'bee', 'goat', 
 'pigeon', 'scarab', 'pelican', 'woodpecker', 'shark', 'crane', 'snail', 'earthworm', 'zebra', 'mosquito', 
 'silkworm', 'anaconda', 'mantis', 'cuckoo', 'ant', 'swallow', 'lion', 'hyena'];
 
 fruitVegeList = ['apple',  'apricot',  'avocado',  'banana', 'Blueberries', 'broccoli', 'cabbage', 'carrot', 'cherry', 'coconut', 
-'corn', 'cucumber', 'eggplant', 'fig', 'garlic', 'ginger', 'Ginseng', 'grape', 'grapefruit', 'Jujube', 'Kiwi', 'lemon',
+'corn', 'cucumber', 'eggplant', 'fig', 'garlic', 'ginger', 'ginseng', 'grape', 'grapefruit', 'jujube', 'kiwi', 'lemon',
  'Lettuce',  'mango', 'melon', 'mushroom', 'onion', 'orange', 'palm', 'parsley', 'peach', 'pepper', 'pickle', 'pimento',
- 'pineapple', 'plum', 'Pomegranate', 'potato', 'pumpkin', 'radish', 'Sesame', 'spinach', 'Starfruit', 'Strawberry',
+ 'pineapple', 'plum', 'pomegranate', 'potato', 'pumpkin', 'radish', 'sesame', 'spinach', 'starfruit', 'strawberry',
   'sweet potato', 'watermelon']
 
   school = ['school', 'book', 'friend', 'teacher', 'table', 'pencil', 'blackboard', 'principal', 'classroom', 'playground', 'canteen',

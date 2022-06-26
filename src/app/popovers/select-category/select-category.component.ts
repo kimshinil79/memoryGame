@@ -11,7 +11,7 @@ export class SelectCategoryComponent implements OnInit {
 
   constructor(
     private selectCategoryPopOver: PopoverController,
-    private mgservice: MGserveService
+    public mgservice: MGserveService
   ) { }
 
   categories=[];
