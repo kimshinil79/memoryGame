@@ -17,7 +17,7 @@ export class MGserveService {
   //게임에 사용할 동물 수
   public picTypeNum = 8;
 
-animalList = ['kangaroo', 'rabbit', 'dog', 'cat', 'Koala', 'gorilla', 'monkey', 
+animalList = ['kangaroo', 'rabbit', 'dog', 'cat', 'koala', 'gorilla', 'monkey', 
 'whale', 'camel', 'snake', 'seal', 'mouse', 'cow', 'horse', 'pig', 'turtle', 'crocodile', 
 'tiger', 'leopard', 'cheetah', 'wolf', 'fox', 'skunk', 'mole', 'dolphin', 'lizard', 'eagle', 
 'unicorn', 'lobster', 'starfish', 'giraffe', 'crow', 'duck', 'parrot', 'owl', 'sparrow', 
@@ -38,7 +38,7 @@ fruitVegeList = ['apple',  'apricot',  'avocado',  'banana', 'Blueberries', 'bro
   school = ['school', 'book', 'friend', 'teacher', 'table', 'pencil', 'blackboard', 'principal', 'classroom', 'playground', 'canteen',
  'lunch', 'exam', 'bus', 'restroom', 'hallway', 'window', 'presentation', 'notebook', 'piano', 'computer', 'violin', 'cooking', 'picnic']
 
- nature = ['mountain',  'river', 'lake', 'ocean', 'space', 'tree', 'flower', 'wind', 'typhoon', 'tide', 'sky', 'waterfall', 'rain', 'snow',
+ nature = ['mountain',  'river', 'lake', 'ocean', 'space', 'tree', 'flower', 'wind', 'typhoon', 'wave', 'sky', 'waterfall', 'rain', 'snow',
  'fog', 'sun', 'cloud', 'forest', 'rock', 'soil', 'moon', 'jungle', 'desert', 'earthquake', 'iceberg', 'beach', 'volcano', 'lightning']
 
 players = [
