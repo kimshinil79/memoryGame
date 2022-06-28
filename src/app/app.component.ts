@@ -3,6 +3,7 @@ import { PopoverController } from '@ionic/angular';
 import { popoverController } from '@ionic/core';
 import { SelectCategoryComponent } from './popovers/select-category/select-category.component';
 import { SelectPlayerComponent } from './popovers/select-player/select-player.component';
+import { SplashScreen } from '@capacitor/splash-screen';
 
 @Component({
   selector: 'app-root',
@@ -13,6 +14,13 @@ export class AppComponent {
   constructor(
     private popover: PopoverController
   ) {}
+
+  async ngOnInit() {
+    await SplashScreen.show({
+      showDuration:5000,
+      autoHide: false
+    })
+  }
 
   async createPlayerSelectPopover() {
     const pop2 = await this.popover.create({

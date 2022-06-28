@@ -29,9 +29,9 @@ animalList = ['kangaroo', 'rabbit', 'dog', 'cat', 'koala', 'gorilla', 'monkey',
 'pigeon', 'scarab', 'pelican', 'woodpecker', 'shark', 'crane', 'snail', 'earthworm', 'zebra', 'mosquito', 
 'silkworm', 'anaconda', 'mantis', 'cuckoo', 'ant', 'swallow', 'lion', 'hyena'];
 
-fruitVegeList = ['apple',  'apricot',  'avocado',  'banana', 'Blueberries', 'broccoli', 'cabbage', 'carrot', 'cherry', 'coconut', 
+fruitVegeList = ['apple',  'apricot',  'avocado',  'banana', 'blueberries', 'broccoli', 'cabbage', 'carrot', 'cherry', 'coconut', 
 'corn', 'cucumber', 'eggplant', 'fig', 'garlic', 'ginger', 'ginseng', 'grape', 'grapefruit', 'jujube', 'kiwi', 'lemon',
- 'Lettuce',  'mango', 'melon', 'mushroom', 'onion', 'orange', 'palm', 'parsley', 'peach', 'pepper', 'pickle', 'pimento',
+ 'lettuce',  'mango', 'melon', 'mushroom', 'onion', 'orange', 'palm', 'parsley', 'peach', 'pepper', 'pickle', 'pimento',
  'pineapple', 'plum', 'pomegranate', 'potato', 'pumpkin', 'radish', 'sesame', 'spinach', 'starfruit', 'strawberry',
   'sweet potato', 'watermelon']
 
