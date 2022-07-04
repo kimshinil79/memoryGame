@@ -5,9 +5,13 @@ ion-card, .card-ios, .card-md {
     }
 
 ion-button, .card-ios, .card-md {
-    padding: 0px !important;
-    //margin : 0px !important;
+    padding: 3px !important;
+    margin : 0px !important;
     border: 0px !important;
+}
+
+ion-toolbar {
+    --ion-toolbar-background: #a972b4 !important;
 }
 
 
@@ -15,6 +19,11 @@ ion-button, .card-ios, .card-md {
 //     --ion-grid-padding: 10px;
 //     --ion-grid-column-padding-xs: 0px;
 // }
+
+.newGame {
+    --background-color : red;
+}
+
 
 .firstClicked {
     background-color: rgb(236, 32, 32);
@@ -42,11 +51,13 @@ ion-button, .card-ios, .card-md {
 
 .cardCol {
     height: 100px;
-    border : solid;
+    border : none;
     border-width: 3px;
     border-radius: 10px;
-    border-color: white;
-    margin: 2px;
+    border-color: rgb(117, 217, 222);
+    margin: 4px;
+    background-color: rgb(73, 142, 157);
+    box-shadow: 3px 3px 3px 1px rgba(0, 0, 0, 0.2);
 }
 
 .firstPic {
@@ -78,8 +89,20 @@ ion-button, .card-ios, .card-md {
     margin : 0px !important;
 }
 
+.record {
+    border: solid !important;
+    border-width: 4px !important;
+    border-radius: 10px !important;
+    border-color :rgb(139, 219, 180) !important;
+    background-color: rgb(27, 109, 109);
+    text-align: center;
+    color : rgb(187, 230, 236);
+    padding : 0px !important;
+    margin : 0px !important;
+}
+
 
 
 ion-content {
-    --ion-background-color : rgb(46, 110, 179);
+    --ion-background-color : rgb(164, 216, 239);
 }

@@ -15,8 +15,8 @@ export class AppComponent {
     private popover: PopoverController
   ) {}
 
-  async ngOnInit() {
-    await SplashScreen.show({
+  ngOnInit() {
+    SplashScreen.show({
       showDuration:5000,
       autoHide: false
     })

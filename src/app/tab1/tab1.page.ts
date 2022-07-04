@@ -82,8 +82,8 @@ export class Tab1Page {
     if (this.matchedCardXY.includes(this.firstClickedXY) && this.matchedCardXY.includes(this.secondClickedXY)) {
       document.getElementById(this.firstClickedXY).style.backgroundImage="";
       document.getElementById(this.secondClickedXY).style.backgroundImage="";
-      document.getElementById(this.firstClickedXY).style.backgroundColor = "none"
-      document.getElementById(this.secondClickedXY).style.backgroundColor = "none"
+      document.getElementById(this.firstClickedXY).style.backgroundColor = "rgb(164, 216, 239)"
+      document.getElementById(this.secondClickedXY).style.backgroundColor = "rgb(164, 216, 239)"
       document.getElementById(this.firstClickedXY).style.border = "none"
       document.getElementById(this.secondClickedXY).style.border = "none"
     }
@@ -191,8 +191,9 @@ export class Tab1Page {
     for (let i=0;i<colTag.length;i++) {
       let col = colTag[i];
       col.style.backgroundImage = "";
-      col.style.border = "solid";
-      col.style.borderColor = "white";
+      col.style.backgroundColor = "rgb(73, 142, 157)";
+      col.style.border = "none";
+      col.style.borderColor = "rgb(117, 217, 222)";
       col.style.borderWidth = "3px";
     }
       

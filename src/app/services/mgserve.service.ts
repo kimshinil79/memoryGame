@@ -41,6 +41,13 @@ fruitVegeList = ['apple',  'apricot',  'avocado',  'banana', 'blueberries', 'bro
  nature = ['mountain',  'river', 'lake', 'ocean', 'space', 'tree', 'flower', 'wind', 'typhoon', 'wave', 'sky', 'waterfall', 'rain', 'snow',
  'fog', 'sun', 'cloud', 'forest', 'rock', 'soil', 'moon', 'jungle', 'desert', 'earthquake', 'iceberg', 'beach', 'volcano', 'lightning']
 
+ music = ['cello',  'conductor', 'orchestra', 'piano', 'drum', 'guitar', 'violin', 'flute', 'accordian', 'castanets', 'clarinet',
+ 'cymbals', 'harmonica', 'harp', 'oboe', 'organ', 'ocarina', 'saxophone', 'tambourine', 'triangle', 'viola', 'vuvuzela',
+ 'xylophone', 'trumpet', 'timpani', 'contrabass', 'bassoon']
+
+ sports = ['soccer', 'basketball', 'volleyball', 'baseball', 'table tennis', 'bowling', 'tennis', 'hockey', 'badminton',
+ 'swimming', 'marathon', 'ski', 'snowboard', 'judo', 'boxing', 'fencing', 'golf', 'archery', 'tug of war', 'curling']
+
 players = [
   {name: '김신일', nameChecked:true}, 
   {name: '민아영', nameChecked:false},
@@ -53,7 +60,9 @@ categories = [
   {name: '동물', engName:'animalList', nameChecked:true}, 
   {name: '과일&채소', engName:'fruitVegeList', nameChecked:false},
   {name: '학교', engName: 'school', nameChecked:false},
-  {name: '자연', engName: 'nature', nameChecked:false}
+  {name: '자연', engName: 'nature', nameChecked:false},
+  {name: '음악', engName: 'music', nameChecked:false},
+  {name: '스포츠', engName: 'sports', nameChecked: false}
 ];
 
 public selectedPlayer=['김신일'];

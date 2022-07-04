@@ -1,13 +1,10 @@
-<ion-header [translucent]="true">
+<ion-header  [translucent]="true">
   <ion-toolbar>
-    <ion-button (click)="newGame()" [disabled]="!MGservice.newGameButtonValid">새게임</ion-button> 
-    <ion-button (click)="createGameSizePopover()">게임 크기{{MGservice.gameDimensionX}}x{{MGservice.gameDimensionY}}</ion-button>
-    <ion-button *ngIf = "MGservice.selectedPlayer.length<2">카드 뒤집은 횟수:{{totalClickCount}}</ion-button>
-    <ion-button *ngIf = "MGservice.selectedPlayer.length<2">{{time}}</ion-button>
-    <ion-button *ngIf = "MGservice.selectedPlayer.length==1">{{MGservice.selectedPlayer[0]}}</ion-button>
-    <ion-button *ngIf = "MGservice.selectedPlayer.length==1" (click)="saveRecord()">기록저장</ion-button>
+    <ion-button class="newGame" color="danger" (click)="newGame()" [disabled]="!MGservice.newGameButtonValid">새게임</ion-button> 
+    <ion-button  color="medium" (click)="createGameSizePopover()">{{MGservice.gameDimensionX}}x{{MGservice.gameDimensionY}}</ion-button>
+    <ion-button color="medium" *ngIf = "MGservice.selectedPlayer.length==1">{{MGservice.selectedPlayer[0]}}</ion-button>
     <ion-button slot="end">
-      <ion-menu-button color="dark"></ion-menu-button>
+      <ion-menu-button color="light"></ion-menu-button>
     </ion-button>
   </ion-toolbar>
 </ion-header>
@@ -21,6 +18,25 @@
         </ion-card>
       </ion-col>
     </ion-row>
+  </ion-grid>
+  <ion-grid *ngIf = "MGservice.selectedPlayer.length == 1">
+    <ion-row>
+      <ion-col>
+        <ion-card>
+          <ion-card-content class="record" *ngIf = "MGservice.selectedPlayer.length<2">뒤집은 횟수:{{totalClickCount}}</ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col>
+        <ion-card>
+          <ion-card-content class="record" *ngIf = "MGservice.selectedPlayer.length<2">{{time}}</ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col>
+        <ion-card>
+          <ion-card-content class="record" *ngIf = "MGservice.selectedPlayer.length<2" (click)="saveRecord()">기록저장</ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>  
   </ion-grid>
   <ion-grid>
     <ion-row  *ngFor ="let row of rows" >
