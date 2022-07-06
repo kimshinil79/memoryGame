@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Firestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
+import { addDoc, collection } from 'firebase/firestore';
 import { AuthenticationService } from './authentication.service';
 
 @Component({
@@ -12,10 +14,12 @@ export class AuthenticationPage implements OnInit {
   url: string;
   pageTitle = "Sign In";
   actionButtonText = "Sign In";
+  loginfail = false;
 
   constructor(
     private readonly router:Router,
-    private readonly auth: AuthenticationService) { }
+    private readonly auth: AuthenticationService,
+    private readonly firestore: Firestore) { }
 
   ngOnInit() {
     this.url = this.router.url.substr(1);
@@ -50,9 +54,11 @@ export class AuthenticationPage implements OnInit {
     console.log(email, password)
     try {
       await this.auth.login(email, password);
+
       this.router.navigateByUrl('/tabs');
     } catch(error) {
       console.log("can't login!!")
+      this.loginfail = true;
     }
   }
 
@@ -60,6 +66,11 @@ export class AuthenticationPage implements OnInit {
     console.log(email, password);
     try {
       await this.auth.signup(email, password);
+      const userId:string = this.auth.getUser().uid;
+      const userCollection = collection(this.firestore, 'users/'+userId+'/profile/');
+      
+      addDoc(userCollection, {id :userId, name:'김신일'})
+
       this.router.navigateByUrl('/tabs');
     } catch(error) {
       console.log(error);

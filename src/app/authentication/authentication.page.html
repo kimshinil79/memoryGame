@@ -15,6 +15,8 @@
  [isPasswordResetPage]="url === 'reset'">
 </app-auth-form>
 
+<div *ngIf = "loginfail">로그인 실패! 이메일이나 비밀번호 확인해 주세요</div>
+
 <ion-button expand="block" fill="clear" routerLink="/signup" *ngIf="url && url !=='signup'">새계정 만들기</ion-button>
 <ion-button expand="block" fill="clear" routerLink="/reset" *ngIf="url && url !=='reset'">비번 찾기</ion-button>
 </ion-content>
