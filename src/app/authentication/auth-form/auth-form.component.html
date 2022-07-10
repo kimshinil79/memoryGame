@@ -11,6 +11,10 @@
     <ion-label position="stacked">비밀번호</ion-label>
     <ion-input formControlName="password" type="password" placeholder="비밀번호 넣으라구"></ion-input>
   </ion-item>
+  <ion-item *ngIf ="signup">
+    <ion-label position="stacked">이름</ion-label>
+    <ion-input formControlName="name" placeholder="이름을 넣어유~"></ion-input>
+  </ion-item>
 
   <ion-button (click)="submitCredentials(authForm)" expand="block" [disabled]="!authForm.valid">
     {{actionButtonText}}

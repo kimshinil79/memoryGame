@@ -1,5 +1,7 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { AuthenticationService } from '../authentication.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-auth-form',
@@ -12,10 +14,21 @@ export class AuthFormComponent implements OnInit {
   @Output() formSubmitted = new EventEmitter<any>();
   public authForm:FormGroup;
 
-  constructor(private readonly formBuilder:FormBuilder) { }
+  constructor(
+    private readonly formBuilder:FormBuilder,
+    private readonly auth: AuthenticationService,
+    private readonly router:Router,) { }
+
+    url:string;
+    signup:boolean = false;
 
   ngOnInit() {
     this.initializeForm(!this.isPasswordResetPage);
+    this.url = this.router.url.substr(1);
+
+    if (this.url =="signup") {
+      this.signup = true;
+    }
   }
 
   initializeForm(showPasswordField:boolean) {
@@ -32,7 +45,8 @@ export class AuthFormComponent implements OnInit {
     } else {
       const credentials = {
         email:authForm.value.email,
-        password:authForm.value.password
+        password:authForm.value.password,
+        name:authForm.value.name
       };
       this.formSubmitted.emit(credentials);
     }

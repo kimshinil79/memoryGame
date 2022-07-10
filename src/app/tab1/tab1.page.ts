@@ -5,6 +5,7 @@ import { DimensionpopComponent } from '../popovers/dimensionpop/dimensionpop.com
 import { PopoverController } from '@ionic/angular';
 import { MenuController } from '@ionic/angular';
 import { SelectPlayerComponent } from '../popovers/select-player/select-player.component';
+import { AuthenticationService } from '../authentication/authentication.service';
 
 
 
@@ -18,10 +19,13 @@ export class Tab1Page {
   constructor(
     public MGservice: MGserveService, 
     private popover:PopoverController,
-    private menu:MenuController
+    private menu:MenuController, 
+    public auth: AuthenticationService
   ) {}
 
   randomItemXYparing = {}
+
+  userName: string;
 
   ngOnInit() {
     console.log(this.MGservice.selectedCategoryItems);
@@ -40,6 +44,8 @@ export class Tab1Page {
     if (this.MGservice.selectedCategoryItems.length >0) {
       this.MGservice.newGameButtonValid = true;
     }
+    this.userName = this.auth.getUser().email
+    console.log('userName', this.userName)
     
     
   }

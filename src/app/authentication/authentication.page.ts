@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Firestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
-import { addDoc, collection } from 'firebase/firestore';
+import { addDoc, collection, doc, setDoc } from 'firebase/firestore';
 import { AuthenticationService } from './authentication.service';
 
 @Component({
@@ -14,7 +14,6 @@ export class AuthenticationPage implements OnInit {
   url: string;
   pageTitle = "Sign In";
   actionButtonText = "Sign In";
-  loginfail = false;
 
   constructor(
     private readonly router:Router,
@@ -23,7 +22,7 @@ export class AuthenticationPage implements OnInit {
 
   ngOnInit() {
     this.url = this.router.url.substr(1);
-    console.log('hha', this.router.url)
+
     if (this.url == 'signup') {
       this.pageTitle = "Create Your Account";
       this.actionButtonText = "계정생성";
@@ -36,13 +35,13 @@ export class AuthenticationPage implements OnInit {
   }
 
   handleUserCredentials(userCredentials) {
-    const {email, password} = userCredentials;
+    const {email, password, name} = userCredentials;
     switch (this.url) {
       case 'login':
         this.login(email, password);
         break;
       case 'signup':
-        this.signup(email, password);
+        this.signup(email, password, name);
         break;
       case 'reset':
         this.resetPassword(email);
@@ -58,18 +57,19 @@ export class AuthenticationPage implements OnInit {
       this.router.navigateByUrl('/tabs');
     } catch(error) {
       console.log("can't login!!")
-      this.loginfail = true;
+      this.auth.loginState = true;
     }
   }
 
-  async signup(email:string, password:string) {
-    console.log(email, password);
+  async signup(email:string, password:string, name:string) {
+    console.log(email, password, name);
     try {
       await this.auth.signup(email, password);
       const userId:string = this.auth.getUser().uid;
-      const userCollection = collection(this.firestore, 'users/'+userId+'/profile/');
+      const userCollection = collection(this.firestore, 'users/');
       
-      addDoc(userCollection, {id :userId, name:'김신일'})
+      // addDoc(userCollection, {id :userId, name:'김신일'})
+      setDoc(doc(this.firestore, "users", email), {name:name, userId:userId});
 
       this.router.navigateByUrl('/tabs');
     } catch(error) {

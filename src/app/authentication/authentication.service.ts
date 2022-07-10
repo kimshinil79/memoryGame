@@ -10,6 +10,8 @@ export class AuthenticationService {
 
   constructor(private readonly auth:Auth, private readonly firestore: Firestore) { }
 
+  loginState = false;
+
   getUser(): User {
     return this.auth.currentUser;
   }
@@ -31,6 +33,8 @@ export class AuthenticationService {
   }
 
   logout(): Promise<void> {
+    console.log('logout');
+    this.loginState = false;
     return signOut(this.auth);
   }
 
