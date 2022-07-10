@@ -14,7 +14,7 @@ import { AuthenticationService } from './authentication/authentication.service';
 export class AppComponent {
   constructor(
     private popover: PopoverController,
-    private auth: AuthenticationService
+    public auth: AuthenticationService
   ) {}
 
   ngOnInit() {

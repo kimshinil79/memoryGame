@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Firestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
-import { addDoc, collection, doc, setDoc } from 'firebase/firestore';
+import { addDoc, collection, doc, setDoc, getDoc } from 'firebase/firestore';
 import { AuthenticationService } from './authentication.service';
 
 @Component({
@@ -53,6 +53,15 @@ export class AuthenticationPage implements OnInit {
     console.log(email, password)
     try {
       await this.auth.login(email, password);
+      this.auth.userEmail = this.auth.getUser().email;
+      const docRef = doc(this.firestore, "users", this.auth.userEmail);
+      const docSnap = await getDoc(docRef);
+      if(docSnap.exists()) {
+        this.auth.userName = docSnap.data()['name'];
+        console.log("userName:", this.auth.userName)
+      } else {
+        console.log("No such document!")
+      }
 
       this.router.navigateByUrl('/tabs');
     } catch(error) {
@@ -66,6 +75,15 @@ export class AuthenticationPage implements OnInit {
     try {
       await this.auth.signup(email, password);
       const userId:string = this.auth.getUser().uid;
+      this.auth.userEmail = this.auth.getUser().email;
+      const docRef = doc(this.firestore, "users", this.auth.userEmail);
+      const docSnap = await getDoc(docRef);
+      if(docSnap.exists()) {
+        this.auth.userName = docSnap.data()['name'];
+        console.log("userName:", this.auth.userName)
+      } else {
+        console.log("No such document!")
+      }
       const userCollection = collection(this.firestore, 'users/');
       
       // addDoc(userCollection, {id :userId, name:'김신일'})

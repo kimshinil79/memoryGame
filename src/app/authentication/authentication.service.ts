@@ -11,6 +11,8 @@ export class AuthenticationService {
   constructor(private readonly auth:Auth, private readonly firestore: Firestore) { }
 
   loginState = false;
+  userEmail:string;
+  userName:string;
 
   getUser(): User {
     return this.auth.currentUser;
