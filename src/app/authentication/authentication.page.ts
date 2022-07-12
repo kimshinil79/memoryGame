@@ -60,6 +60,7 @@ export class AuthenticationPage implements OnInit {
     querySnapshot.forEach((document) => {
       playersTemp.push(document.id);
     })
+    this.MGservice.players = [];
     for await (let player of playersTemp) {
       if (player != mainuser) {
         const docRef = doc(this.firestore, "users", player);
