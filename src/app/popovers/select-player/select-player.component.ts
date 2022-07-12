@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PopoverController } from '@ionic/angular';
 import { popoverController } from '@ionic/core';
+import { AuthenticationService } from 'src/app/authentication/authentication.service';
 import { MGserveService } from 'src/app/services/mgserve.service';
 
 @Component({
@@ -12,7 +13,8 @@ export class SelectPlayerComponent implements OnInit {
 
   constructor(
     private selectPlayerPopOver: PopoverController,
-    private mgservice:MGserveService
+    private mgservice:MGserveService,
+    private auth:AuthenticationService
   ) { }
 
   players = [];
@@ -47,6 +49,7 @@ export class SelectPlayerComponent implements OnInit {
 
   selectAll(){
     this.mgservice.selectedPlayer = [];
+    this.mgservice.selectedPlayer.push(this.auth.userName);
     for (let player of this.mgservice.players) {
       player.nameChecked = true;
       this.mgservice.selectedPlayer.push(player.name);
@@ -58,6 +61,7 @@ export class SelectPlayerComponent implements OnInit {
       player.nameChecked = false;
     }
     this.mgservice.selectedPlayer = [];
+    this.mgservice.selectedPlayer.push(this.auth.userName)
   }
 
 }

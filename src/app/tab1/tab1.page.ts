@@ -6,6 +6,9 @@ import { PopoverController } from '@ionic/angular';
 import { MenuController } from '@ionic/angular';
 import { SelectPlayerComponent } from '../popovers/select-player/select-player.component';
 import { AuthenticationService } from '../authentication/authentication.service';
+import { Firestore } from '@angular/fire/firestore';
+import { addDoc, collection, doc, setDoc, getDoc, getDocs } from 'firebase/firestore';
+
 
 
 
@@ -20,19 +23,18 @@ export class Tab1Page {
     public MGservice: MGserveService, 
     private popover:PopoverController,
     private menu:MenuController, 
-    public auth: AuthenticationService
+    public auth: AuthenticationService,
+    private readonly firestore:Firestore
   ) {}
 
   randomItemXYparing = {}
 
   userName: string;
 
-  ngOnInit() {
-    console.log(this.MGservice.selectedCategoryItems);
+  async ngOnInit() {
     this.randomItemXYparing = this.MGservice.randomPositionPic();
     for (let k=0;k<this.MGservice.selectedPlayer.length;k++){
       this.MGservice.scoreList.push(0);
-      console.log('haha', this.MGservice.scoreList)
     }
     for (let i=0;i<this.MGservice.gameDimensionX;i++){
       this.rows.push(i.toString())
@@ -40,12 +42,23 @@ export class Tab1Page {
     for (let j=0;j<this.MGservice.gameDimensionY;j++) {
       this.columns.push(j.toString())
     }
-    this.createPlayerSelectPopover();
+    //this.createPlayerSelectPopover();
     if (this.MGservice.selectedCategoryItems.length >0) {
       this.MGservice.newGameButtonValid = true;
     }
-    this.userName = this.auth.getUser().email
-    console.log('userName', this.userName)
+
+    this.auth.userEmail = await this.auth.getUser().email;
+    const docRef = doc(this.firestore, "users", this.auth.userEmail);
+    const docSnap = await getDoc(docRef);
+    if(docSnap.exists()) {
+      this.auth.userName = docSnap.data()['name'];
+      this.MGservice.selectedPlayer = [];
+      this.MGservice.selectedPlayer.push(this.auth.userName);
+    } else {
+      console.log("No such document!") 
+    }
+
+    this.getPlayersList();
     
     
   }
@@ -262,6 +275,24 @@ export class Tab1Page {
     let ms = timeElapsed.getUTCMilliseconds();
 
     this.time = this.zeroPrefix(min, 2) + ":" + this.zeroPrefix(sec,2) + ":" + this.zeroPrefix(ms, 3);
+  }
+
+  async getPlayersList() {
+    const mainuser = this.auth.getUser().email;
+    let playersTemp = [];
+    const querySnapshot = await getDocs(collection(this.firestore, "users"));
+    querySnapshot.forEach((document) => {
+      playersTemp.push(document.id);
+    })
+    for await (let player of playersTemp) {
+      if (player != mainuser) {
+        const docRef = doc(this.firestore, "users", player);
+        const docSnap = await getDoc(docRef);
+        const name = docSnap.data()['name'];
+        this.MGservice.players.push({name:name, email:player, nameChecked:false})
+      }      
+    }
+    
   }
 
   saveRecord() {

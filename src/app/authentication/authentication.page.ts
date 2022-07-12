@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Firestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
-import { addDoc, collection, doc, setDoc, getDoc } from 'firebase/firestore';
+import { addDoc, collection, doc, setDoc, getDoc, getDocs } from 'firebase/firestore';
+import { MGserveService } from '../services/mgserve.service';
 import { AuthenticationService } from './authentication.service';
 
 @Component({
@@ -18,7 +19,9 @@ export class AuthenticationPage implements OnInit {
   constructor(
     private readonly router:Router,
     private readonly auth: AuthenticationService,
-    private readonly firestore: Firestore) { }
+    private readonly firestore: Firestore,
+    private readonly MGservice:MGserveService) { }
+    
 
   ngOnInit() {
     this.url = this.router.url.substr(1);
@@ -32,6 +35,7 @@ export class AuthenticationPage implements OnInit {
       this.pageTitle = "Reset Your Password";
       this.actionButtonText = "비밀번호 재설정";
     }
+    this.getPlayersList();
   }
 
   handleUserCredentials(userCredentials) {
@@ -49,8 +53,25 @@ export class AuthenticationPage implements OnInit {
     }
   }
 
+  async getPlayersList() {
+    const mainuser = this.auth.getUser().email;
+    let playersTemp = [];
+    const querySnapshot = await getDocs(collection(this.firestore, "users"));
+    querySnapshot.forEach((document) => {
+      playersTemp.push(document.id);
+    })
+    for await (let player of playersTemp) {
+      if (player != mainuser) {
+        const docRef = doc(this.firestore, "users", player);
+        const docSnap = await getDoc(docRef);
+        const name = docSnap.data()['name'];
+        this.MGservice.players.push({name:name, email:player, nameChecked:false})
+      }      
+    }
+    
+  }
+
   async login(email:string, password:string) {
-    console.log(email, password)
     try {
       await this.auth.login(email, password);
       this.auth.userEmail = this.auth.getUser().email;
@@ -58,7 +79,9 @@ export class AuthenticationPage implements OnInit {
       const docSnap = await getDoc(docRef);
       if(docSnap.exists()) {
         this.auth.userName = docSnap.data()['name'];
-        console.log("userName:", this.auth.userName)
+        this.MGservice.selectedPlayer = [];
+        this.MGservice.selectedPlayer.push(this.auth.userName);
+        this.getPlayersList();
       } else {
         console.log("No such document!")
       }
@@ -71,24 +94,26 @@ export class AuthenticationPage implements OnInit {
   }
 
   async signup(email:string, password:string, name:string) {
-    console.log(email, password, name);
     try {
       await this.auth.signup(email, password);
+      
       const userId:string = this.auth.getUser().uid;
       this.auth.userEmail = this.auth.getUser().email;
+      setDoc(doc(this.firestore, "users", email), {name:name, userId:userId});
       const docRef = doc(this.firestore, "users", this.auth.userEmail);
       const docSnap = await getDoc(docRef);
       if(docSnap.exists()) {
         this.auth.userName = docSnap.data()['name'];
-        console.log("userName:", this.auth.userName)
+        this.MGservice.selectedPlayer = [];
+        this.MGservice.selectedPlayer.push(this.auth.userName);
+        this.getPlayersList();
       } else {
         console.log("No such document!")
       }
       const userCollection = collection(this.firestore, 'users/');
       
       // addDoc(userCollection, {id :userId, name:'김신일'})
-      setDoc(doc(this.firestore, "users", email), {name:name, userId:userId});
-
+      
       this.router.navigateByUrl('/tabs');
     } catch(error) {
       console.log(error);

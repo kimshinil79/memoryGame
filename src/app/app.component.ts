@@ -5,6 +5,9 @@ import { SelectCategoryComponent } from './popovers/select-category/select-categ
 import { SelectPlayerComponent } from './popovers/select-player/select-player.component';
 import { SplashScreen } from '@capacitor/splash-screen';
 import { AuthenticationService } from './authentication/authentication.service';
+import { Firestore } from '@angular/fire/firestore';
+import { addDoc, collection, doc, setDoc, getDoc, getDocs } from 'firebase/firestore';
+import { MGserveService } from './services/mgserve.service';
 
 @Component({
   selector: 'app-root',
@@ -14,14 +17,26 @@ import { AuthenticationService } from './authentication/authentication.service';
 export class AppComponent {
   constructor(
     private popover: PopoverController,
-    public auth: AuthenticationService
+    public auth: AuthenticationService,
+    private readonly firestore:Firestore,
+    private MGservice : MGserveService
   ) {}
 
-  ngOnInit() {
+  async ngOnInit() {
     SplashScreen.show({
       showDuration:5000,
       autoHide: false
     })
+    // this.auth.userEmail = this.auth.getUser().email;
+    // const docRef = doc(this.firestore, "users", this.auth.userEmail);
+    // const docSnap = await getDoc(docRef);
+    // if(docSnap.exists()) {
+    //   this.auth.userName = docSnap.data()['name'];
+    //   this.MGservice.selectedPlayer = [];
+    //   this.MGservice.selectedPlayer.push(this.auth.userName);
+    // } else {
+    //   console.log("No such document!")
+    // }
 
   }
 

@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
+import { Firestore } from '@angular/fire/firestore';
 //import { Storage } from '@ionic/storage';
+import { collection, getDocs, getDoc, doc } from "firebase/firestore"
 import { Storage } from '@capacitor/storage';
+import { AuthenticationService } from '../authentication/authentication.service';
 
 
 
@@ -48,13 +51,14 @@ fruitVegeList = ['apple',  'apricot',  'avocado',  'banana', 'blueberries', 'bro
  sports = ['soccer', 'basketball', 'volleyball', 'baseball', 'table tennis', 'bowling', 'tennis', 'hockey', 'badminton',
  'swimming', 'marathon', 'ski', 'snowboard', 'judo', 'boxing', 'fencing', 'golf', 'archery', 'tug of war', 'curling']
 
-players = [
-  {name: '김신일', nameChecked:true}, 
-  {name: '민아영', nameChecked:false},
-  {name: "김하임", nameChecked:false},
-  {name: "김로하", nameChecked:false},
-  {name: "김하온", nameChecked:false}
-]; 
+// players = [
+//   {name: '김신일', nameChecked:true}, 
+//   {name: '민아영', nameChecked:false},
+//   {name: "김하임", nameChecked:false},
+//   {name: "김로하", nameChecked:false},
+//   {name: "김하온", nameChecked:false}
+// ]; 
+players=[];
 
 categories = [
   {name: '동물', engName:'animalList', nameChecked:true}, 
@@ -65,7 +69,7 @@ categories = [
   {name: '스포츠', engName: 'sports', nameChecked: false}
 ];
 
-public selectedPlayer=['김신일'];
+public selectedPlayer=[];
 public selectedCategory=['animalList']
 public selectedCategoryItems = this.animalList;
 
@@ -81,16 +85,22 @@ public recordList = [];
 
   constructor(
     //private storage:Storage,
+    private firestore: Firestore,
   ){
     this.init(); 
+    
    }
 
   async init() {
   //    const storage = await this.storage.create();
   //    this._storage = storage;
   const data = await Storage.get({'key':'record'});
+  
   return JSON.parse(data.value)
+  
   }
+
+
 
    //리스트 항목을 셔플하는 함수
    suffleArray(list){

@@ -2,7 +2,7 @@
   <ion-toolbar>
     <ion-button class="newGame" color="danger" (click)="newGame()" [disabled]="!MGservice.newGameButtonValid">새게임</ion-button> 
     <ion-button  color="medium" (click)="createGameSizePopover()">{{MGservice.gameDimensionX}}x{{MGservice.gameDimensionY}}</ion-button>
-    <ion-button color="medium" *ngIf = "MGservice.selectedPlayer.length==1">{{auth.userName}}</ion-button>
+    <ion-button color="medium" *ngIf = "auth.userName">{{auth.userName}}</ion-button>
     <ion-button slot="end">
       <ion-menu-button color="light"></ion-menu-button>
     </ion-button>

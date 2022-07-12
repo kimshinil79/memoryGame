@@ -2,13 +2,15 @@ import { Injectable } from '@angular/core';
 import { Auth,createUserWithEmailAndPassword, sendPasswordResetEmail, signInWithEmailAndPassword, signOut, User, UserCredential } from '@angular/fire/auth';
 import { Firestore } from '@angular/fire/firestore';
 import { Observable, of } from 'rxjs';
+import { MGserveService } from '../services/mgserve.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
 
-  constructor(private readonly auth:Auth, private readonly firestore: Firestore) { }
+  constructor(private readonly auth:Auth, private readonly firestore: Firestore,
+    private readonly MGservice:MGserveService) { }
 
   loginState = false;
   userEmail:string;
@@ -35,8 +37,9 @@ export class AuthenticationService {
   }
 
   logout(): Promise<void> {
-    console.log('logout');
+    this.userName='';
     this.loginState = false;
+    this.MGservice.players = []
     return signOut(this.auth);
   }
 

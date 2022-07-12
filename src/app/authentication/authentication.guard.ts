@@ -14,6 +14,7 @@ export class AuthenticationGuard implements CanActivate {
       return new Promise((resolve, reject) => {
         onAuthStateChanged(this.auth, (user) => {
           if(user) {
+            console.log('logged in!!')
             resolve(true);
           } else {
             reject('No user logged in');
