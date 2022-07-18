@@ -1,0 +1,11 @@
+<ion-grid *ngIf = "maxScoreIndexList.length ==1">
+  <p>축!! {{mgservice.selectedPlayer[maxScoreIndexList[0]]}}, {{maxScore}}점으로 우승!!</p>
+</ion-grid>
+<ion-grid *ngIf = "maxScoreIndexList.length >1">
+  축!! {{maxScore}}점으로 공동우승!!!
+  <ion-list>
+    <ion-item *ngFor = "let i of maxScoreIndexList">
+      <B>{{mgservice.selectedPlayer[i]}}</B>
+    </ion-item>
+  </ion-list>
+</ion-grid>

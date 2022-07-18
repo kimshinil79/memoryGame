@@ -15,10 +15,11 @@ import { environment } from '../environments/environment';
 import { provideAuth,getAuth } from '@angular/fire/auth';
 import { provideFirestore,getFirestore, enableIndexedDbPersistence } from '@angular/fire/firestore';
 import { SelectCategoryComponent } from './popovers/select-category/select-category.component';
+import { GameConclusionComponent } from './popovers/game-conclusion/game-conclusion.component';
 
 @NgModule({
-  declarations: [AppComponent, DimensionpopComponent, SelectPlayerComponent, SelectCategoryComponent],
-  entryComponents: [DimensionpopComponent, SelectPlayerComponent],
+  declarations: [AppComponent, DimensionpopComponent, SelectPlayerComponent, SelectCategoryComponent, GameConclusionComponent],
+  entryComponents: [DimensionpopComponent, SelectPlayerComponent, GameConclusionComponent],
   imports: [
     BrowserModule, 
     IonicStorageModule.forRoot({

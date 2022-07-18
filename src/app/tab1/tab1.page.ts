@@ -8,6 +8,7 @@ import { SelectPlayerComponent } from '../popovers/select-player/select-player.c
 import { AuthenticationService } from '../authentication/authentication.service';
 import { Firestore } from '@angular/fire/firestore';
 import { addDoc, collection, doc, setDoc, getDoc, getDocs } from 'firebase/firestore';
+import { GameConclusionComponent } from '../popovers/game-conclusion/game-conclusion.component';
 
 
 
@@ -175,8 +176,20 @@ export class Tab1Page {
 
     if (this.matchedCardXY.length === this.rows.length * this.columns.length){
       this.timerStop();
+      if (this.MGservice.selectedPlayer.length>1) {
+        this.gameConclusionPopover();
+      }      
     }
     
+  }
+
+
+
+  async gameConclusionPopover() {
+    const pop = await this.popover.create({
+      component: GameConclusionComponent
+    });
+    return pop.present()
   }
 
   newGame() {
