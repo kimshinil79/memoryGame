@@ -20,7 +20,7 @@ export class MGserveService {
   //게임에 사용할 동물 수
   public picTypeNum = 8;
 
-animalList = ['kangaroo', 'rabbit', 'dog', 'cat', 'koala', 'gorilla', 'monkey', 
+public animalList = ['kangaroo', 'rabbit', 'dog', 'cat', 'koala', 'gorilla', 'monkey', 
 'whale', 'camel', 'snake', 'seal', 'mouse', 'cow', 'horse', 'pig', 'turtle', 'crocodile', 
 'tiger', 'leopard', 'cheetah', 'wolf', 'fox', 'skunk', 'mole', 'dolphin', 'lizard', 'eagle', 
 'unicorn', 'lobster', 'starfish', 'giraffe', 'crow', 'duck', 'parrot', 'owl', 'sparrow', 
@@ -32,32 +32,27 @@ animalList = ['kangaroo', 'rabbit', 'dog', 'cat', 'koala', 'gorilla', 'monkey',
 'pigeon', 'scarab', 'pelican', 'woodpecker', 'shark', 'crane', 'snail', 'earthworm', 'zebra', 'mosquito', 
 'silkworm', 'anaconda', 'mantis', 'cuckoo', 'ant', 'swallow', 'lion', 'hyena'];
 
-fruitVegeList = ['apple',  'apricot',  'avocado',  'banana', 'blueberries', 'broccoli', 'cabbage', 'carrot', 'cherry', 'coconut', 
+public fruitVegeList = ['apple',  'apricot',  'avocado',  'banana', 'blueberries', 'broccoli', 'cabbage', 'carrot', 'cherry', 'coconut', 
 'corn', 'cucumber', 'eggplant', 'fig', 'garlic', 'ginger', 'ginseng', 'grape', 'grapefruit', 'jujube', 'kiwi', 'lemon',
  'lettuce',  'mango', 'melon', 'mushroom', 'onion', 'orange', 'palm', 'parsley', 'peach', 'pepper', 'pickle', 'pimento',
  'pineapple', 'plum', 'pomegranate', 'potato', 'pumpkin', 'radish', 'sesame', 'spinach', 'starfruit', 'strawberry',
   'sweet potato', 'watermelon']
 
-  school = ['school', 'book', 'friend', 'teacher', 'table', 'pencil', 'blackboard', 'principal', 'classroom', 'playground', 'canteen',
+public school = ['school', 'book', 'friend', 'teacher', 'table', 'pencil', 'blackboard', 'principal', 'classroom', 'playground', 'canteen',
  'lunch', 'exam', 'bus', 'restroom', 'hallway', 'window', 'presentation', 'notebook', 'piano', 'computer', 'violin', 'cooking', 'picnic']
 
- nature = ['mountain',  'river', 'lake', 'ocean', 'space', 'tree', 'flower', 'wind', 'typhoon', 'wave', 'sky', 'waterfall', 'rain', 'snow',
+public nature = ['mountain',  'river', 'lake', 'ocean', 'space', 'tree', 'flower', 'wind', 'typhoon', 'wave', 'sky', 'waterfall', 'rain', 'snow',
  'fog', 'sun', 'cloud', 'forest', 'rock', 'soil', 'moon', 'jungle', 'desert', 'earthquake', 'iceberg', 'beach', 'volcano', 'lightning']
 
- music = ['cello',  'conductor', 'orchestra', 'piano', 'drum', 'guitar', 'violin', 'flute', 'accordian', 'castanets', 'clarinet',
+public music = ['cello',  'conductor', 'orchestra', 'piano', 'drum', 'guitar', 'violin', 'flute', 'accordian', 'castanets', 'clarinet',
  'cymbals', 'harmonica', 'harp', 'oboe', 'organ', 'ocarina', 'saxophone', 'tambourine', 'triangle', 'viola', 'vuvuzela',
  'xylophone', 'trumpet', 'timpani', 'contrabass', 'bassoon']
 
- sports = ['soccer', 'basketball', 'volleyball', 'baseball', 'table tennis', 'bowling', 'tennis', 'hockey', 'badminton',
+public  sports = ['soccer', 'basketball', 'volleyball', 'baseball', 'table tennis', 'bowling', 'tennis', 'hockey', 'badminton',
  'swimming', 'marathon', 'ski', 'snowboard', 'judo', 'boxing', 'fencing', 'golf', 'archery', 'tug of war', 'curling']
 
-// players = [
-//   {name: '김신일', nameChecked:true}, 
-//   {name: '민아영', nameChecked:false},
-//   {name: "김하임", nameChecked:false},
-//   {name: "김로하", nameChecked:false},
-//   {name: "김하온", nameChecked:false}
-// ]; 
+categoriesList = ['animalList', 'fruitVegeList', 'school', 'nature', 'music', 'sports']
+
 players=[];
 
 categories = [

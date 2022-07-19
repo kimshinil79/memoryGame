@@ -11,21 +11,29 @@ export class Tab2Page {
   constructor(
     public MGservice: MGserveService
   ) {}
-  
-  aaa = null;
+
+  totalItemsList = [];
+  itemListForExam = [];
+  nonAnswerItemsList = [];
+  examNum = 10;
+  pictureIndex = ['0','1','2','3','4'];
+
   ngOnInit() {
-    console.log('tab2222')
+    this.newExam();
   }
 
-  test() {
-    document.getElementById('aa').style.backgroundImage = "url('../../assets/animalPic/anaconda0.jpg')"
-    document.getElementById('aa').style.backgroundSize = "100% 100%"
+  newExam() {
+    for (let list of this.MGservice.categoriesList) {
+      this.totalItemsList.push(...this.MGservice[list])
+    }
+    this.itemListForExam = this.MGservice.suffleArray(this.totalItemsList).slice(0, this.examNum);
+    this.nonAnswerItemsList = this.totalItemsList.slice(10, this.totalItemsList.length-this.examNum)
+    let selectedIndex = this.MGservice.suffleArray(this.pictureIndex)[0]
+
+
   }
 
-  test2() {
-    document.getElementById('bb').style.backgroundImage = "url('../../assets/Pic/orange4.jpg')"
-    this.MGservice.readFile('../../assets/Pic/orange4.jpg');
-  }
+
 
   
 
