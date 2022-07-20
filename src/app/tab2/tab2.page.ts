@@ -17,6 +17,7 @@ export class Tab2Page {
   nonAnswerItemsList = [];
   examNum = 10;
   pictureIndex = ['0','1','2','3','4'];
+  biggerList = [[1,2,3,], [4,5,6]]
 
   ngOnInit() {
     this.newExam();
