@@ -1,8 +1,9 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      시험
+      시험(소리와 맞는 사진을 고르세요.)
     </ion-title>
+    
   </ion-toolbar>
 </ion-header>
 
@@ -12,11 +13,20 @@
       <ion-title size="large">Tab 2111</ion-title>
     </ion-toolbar>
   </ion-header>
-
-  <ion-grid *ngFor = "let list of biggerList">
+  <ion-button expand="full" (click)="newExam()">새시험</ion-button>
+  <ion-grid *ngFor = "let list of finalList;index as i">
+    <ion-button>
+      <ion-label size="large">{{i}}</ion-label>
+      <ion-icon name="megaphone-outline" size="small">zz</ion-icon>
+      
+    </ion-button>
+    
     <ion-row>
       <ion-col *ngFor = " let item of list">
-        {{item}}zzz
+        <ion-item>
+          <img src={{item}}>
+        </ion-item>
+        
       </ion-col>
 
     </ion-row>
