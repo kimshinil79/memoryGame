@@ -15,15 +15,14 @@
   </ion-header>
   <ion-button expand="full" (click)="newExam()">새시험</ion-button>
   <ion-grid *ngFor = "let list of finalList;index as i">
-    <ion-button>
-      <ion-label size="large">{{i}}</ion-label>
+    <ion-button (click) = "makeSound(i)">
+      <ion-label size="large">{{i+1}}. </ion-label>
       <ion-icon name="megaphone-outline" size="small">zz</ion-icon>
-      
     </ion-button>
     
     <ion-row>
-      <ion-col *ngFor = " let item of list">
-        <ion-item>
+      <ion-col *ngFor = " let item of list; index as j">
+        <ion-item id ={{i.toString()+j.toString()}}  (click) = makeSelectedItem(i,j)>
           <img src={{item}}>
         </ion-item>
         
@@ -32,4 +31,5 @@
     </ion-row>
 
   </ion-grid>
+  <ion-button expand="full" (click)="scoring()">제출</ion-button>
 </ion-content>

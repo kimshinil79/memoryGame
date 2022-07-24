@@ -70,6 +70,8 @@ public selectedCategoryItems = this.animalList;
 
 newGameButtonValid = true;
 
+score = 0;
+
 
 //private _storage: Storage | null = null;
 

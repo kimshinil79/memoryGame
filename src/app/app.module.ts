@@ -16,10 +16,11 @@ import { provideAuth,getAuth } from '@angular/fire/auth';
 import { provideFirestore,getFirestore, enableIndexedDbPersistence } from '@angular/fire/firestore';
 import { SelectCategoryComponent } from './popovers/select-category/select-category.component';
 import { GameConclusionComponent } from './popovers/game-conclusion/game-conclusion.component';
+import { ScoreComponent } from './popovers/score/score.component';
 
 @NgModule({
-  declarations: [AppComponent, DimensionpopComponent, SelectPlayerComponent, SelectCategoryComponent, GameConclusionComponent],
-  entryComponents: [DimensionpopComponent, SelectPlayerComponent, GameConclusionComponent],
+  declarations: [AppComponent, DimensionpopComponent, SelectPlayerComponent, SelectCategoryComponent, GameConclusionComponent, ScoreComponent],
+  entryComponents: [DimensionpopComponent, SelectPlayerComponent, GameConclusionComponent, ScoreComponent], 
   imports: [
     BrowserModule, 
     IonicStorageModule.forRoot({
