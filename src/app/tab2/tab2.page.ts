@@ -3,6 +3,7 @@ import { PopoverController } from '@ionic/angular';
 import { ScoreComponent } from '../popovers/score/score.component';
 import { MGserveService } from '../services/mgserve.service';
 
+
 @Component({
   selector: 'app-tab2',
   templateUrl: 'tab2.page.html',
@@ -24,18 +25,30 @@ export class Tab2Page {
   finalList = [];
   pictureIndex = ['0','1','2','3','4'];
   selectedIndex = "0"
+  selectionNum = 0;
   answerIndexList = [];
   selectedNumList = [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1];
+  finalResultTFList = [];
   americanBritish = ["american", "british"]
   audio = new Audio();
+
+  questionPage:number = 0;
+  submitted = false;
+
+  newGame = true;
 
   ngOnInit() {
     this.newExam();
   }
+  ngAfterViewInit() {
+    console.log("loaded")
+    //this.displayFirstQuestion();
+    this.changeQuestionPage(0);
+  }
 
 
 
-  newExam() {
+  async newExam() {
 
     this.totalItemsList = [];
     this.itemListForExam = [];
@@ -44,6 +57,12 @@ export class Tab2Page {
     this.nonAnswerItemsListWithJpg = [];
     this.finalList = [];
     this.answerIndexList = [];
+    this.selectedNumList = [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1];
+    this.questionPage = 0;
+    this.newGame = true;
+    this.selectionNum = 0;
+    this.submitted = false;
+    
 
     this.selectedIndex = this.MGservice.suffleArray(this.pictureIndex)[0];
 
@@ -70,10 +89,36 @@ export class Tab2Page {
       startIndexForSlice = startIndexForSlice+3;
 
     }
-    console.log(this.itemListForExam)
-    console.log(this.answerIndexList)
 
+    this.displayFirstQuestion();
 
+  }
+
+  displayFirstQuestion() {
+
+    for (let pageNum=0;pageNum<10;pageNum++) {
+      let tempPageId = "page"+pageNum.toString();
+      let tempElement = document.getElementById(tempPageId)
+      if (tempPageId == "page0" && tempElement != null) {
+        console.log('page0')
+        tempElement.style.display = ""
+      } 
+      if (tempPageId !="page0" && tempElement != null) {
+        console.log(tempPageId)
+        tempElement.style.display = "none"
+      }
+      
+
+      for (let itemNum=0;itemNum<4;itemNum++) {
+        let tempId = "test"+pageNum.toString()+itemNum.toString();
+        let tempItem =  document.getElementById(tempId)
+        if (tempItem !=null) {
+          tempItem.style.border = "none"
+        }
+        
+      }
+
+    }
   }
 
   makeSound(index) {
@@ -85,6 +130,7 @@ export class Tab2Page {
   }
 
   makeSelectedItem(questionNum, selectedNum) {
+
     for (let index of ["0","1","2","3"]) {
       let id = "test"+questionNum.toString()+index;
       document.getElementById(id).style.border = "none"  
@@ -93,14 +139,42 @@ export class Tab2Page {
     document.getElementById("test"+questionNum.toString()+selectedNum.toString()).style.border = "solid"
     document.getElementById("test"+questionNum.toString()+selectedNum.toString()).style.borderColor = "red"
     document.getElementById("test"+questionNum.toString()+selectedNum.toString()).style.borderWidth = "3px"
-    console.log(this.selectedNumList)
+    console.log(this.selectedNumList);
+    this.selectionNum = this.selectionNum+1;
+  }
+
+  changeQuestionPage(pageNum) {
+
+    this.questionPage = pageNum;
+    let id = "question"+pageNum.toString();
+    for (let num=0;num<10;num++) {
+      let tempId = "question"+num.toString();
+      if (id == tempId) {
+        document.getElementById(id).style.display = "";
+      } else {
+        document.getElementById(tempId).style.display="none"
+      }
+    }
+  }
+
+  previousQuestion() {
+    this.changeQuestionPage(this.questionPage-1);
+  }
+
+  nextQuestion() {
+    this.changeQuestionPage(this.questionPage+1);
   }
 
   scoring() {
     let rightAnswerNum = 0;
+    this.submitted = true;
+    this.finalResultTFList = [];
     for (let i = 0;i<10;i++) {
       if (this.answerIndexList[i] == this.selectedNumList[i]) {
         rightAnswerNum = rightAnswerNum+1;
+        this.finalResultTFList.push(true);
+      } else {
+        this.finalResultTFList.push(false)
       }
     }
     this.MGservice.score = rightAnswerNum*10;

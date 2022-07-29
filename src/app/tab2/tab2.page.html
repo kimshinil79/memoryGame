@@ -9,28 +9,80 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 2111</ion-title>
-    </ion-toolbar>
-  </ion-header>
   
-  <ion-grid *ngFor = "let list of finalList;index as i">
-    <ion-button color="success" (click) = "makeSound(i)">
-      <ion-label size="large">{{i+1}}.</ion-label>
-      <ion-icon name="megaphone-outline" size="small"></ion-icon>
-    </ion-button>
-    
+  <ion-grid *ngIf = "!submitted">
     <ion-row>
-      <ion-col *ngFor = " let item of list; index as j">
-        <ion-item id =test{{i.toString()+j.toString()}}  (click) = makeSelectedItem(i,j)>
-          <img  src={{item}}>
-        </ion-item>
-        
+      <ion-col *ngFor = "let number of [0,1,2,3,4]">
+        <ion-button [color]="number==questionPage? 'danger':'success'" (click)="changeQuestionPage(number)" >{{number+1}}</ion-button>
       </ion-col>
-
     </ion-row>
-
+    <ion-row>
+      <ion-col *ngFor = "let number of [5,6,7,8,9]">
+        <ion-button [color]="number==questionPage? 'danger':'success'" (click)="changeQuestionPage(number)" >{{number+1}}</ion-button>
+      </ion-col>
+    </ion-row>
   </ion-grid>
-  <ion-button expand="full" (click)="scoring()">제출</ion-button>
+  <ion-grid *ngIf = "submitted">
+    <ion-row>
+      <ion-col *ngFor = "let number of [0,1,2,3,4]">
+        <ion-button  [color]="finalResultTFList[number] == true? 'success':'dark'"  (click)="changeQuestionPage(number)" >{{number+1}}</ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col *ngFor = "let number of [5,6,7,8,9]">
+        <ion-button [color]="finalResultTFList[number] == true? 'success':'dark'" (click)="changeQuestionPage(number)" >{{number+1}}</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-button expand="full"  (click) = "makeSound(questionPage)">
+    <ion-label size="large">듣기</ion-label>
+    <ion-icon name="megaphone-outline" size="small"></ion-icon>
+  </ion-button>
+  <div  *ngFor="let page of [0,1,2,3,4,5,6,7,8,9]">
+    <div id=question{{page}}>
+      <ion-grid>
+        <ion-row>
+          <ion-col >
+            <ion-item  (click) = "makeSelectedItem(questionPage,0)">
+              <img  id =test{{page.toString()+0}}  src={{finalList[page][0]}}>
+            </ion-item>
+          </ion-col>
+          <ion-col >
+            <ion-item  (click) = "makeSelectedItem(questionPage,1)">
+              <img  id =test{{page.toString()+1}} src={{finalList[page][1]}}>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-item  (click) = "makeSelectedItem(questionPage,2)">
+              <img  id =test{{page.toString()+2}} src={{finalList[page][2]}}>
+            </ion-item>
+          </ion-col>
+          <ion-col >
+            <ion-item  (click) = "makeSelectedItem(questionPage,3)">
+              <img  id =test{{page.toString()+3}} src={{finalList[page][3]}}>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-grid> 
+    </div>
+  </div>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-button expand = "full" (click)="previousQuestion()" [disabled]="questionPage==0">이전 문제</ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button expand = "full" (click)="nextQuestion()" [disabled]="questionPage==9">다음 문제</ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-button expand="full" (click)="scoring()" [disabled]="selectionNum<10">제출</ion-button>  
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  
 </ion-content>
