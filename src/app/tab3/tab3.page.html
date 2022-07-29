@@ -1,17 +1,61 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 3
+      시험(소리와 맞는 사진을 고르세요.)
     </ion-title>
+    <ion-button color ="danger" slot="end" (click)="newExam()">새시험</ion-button>
+    
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 3</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  
+  <ion-grid>
+    <ion-row>
+      <ion-col *ngFor = "let number of [0,1,2,3,4]">
+        <ion-button [color]="number==questionPage? 'danger':'success'" (click)="changeQuestionPage(number)" >{{number+1}}</ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col *ngFor = "let number of [5,6,7,8,9]">
+        <ion-button [color]="number==questionPage? 'danger':'success'" (click)="changeQuestionPage(number)" >{{number+1}}</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
-  <app-explore-container name="Tab 3 page"></app-explore-container>
+  <ion-button expand="full"  (click) = "makeSound(questionPage)">
+    <ion-label size="large">듣기</ion-label>
+    <ion-icon name="megaphone-outline" size="small"></ion-icon>
+  </ion-button>
+  <div  *ngFor="let page of [0,1,2,3,4,5,6,7,8,9]">
+    <div id=question{{page}}>
+      <ion-grid>
+        <ion-row>
+          <ion-col >
+            <ion-item  (click) = "makeSelectedItem(questionPage,0)">
+              <img  id =test{{page.toString()+0}}  src={{finalList[page][0]}}>
+            </ion-item>
+          </ion-col>
+          <ion-col >
+            <ion-item  (click) = "makeSelectedItem(questionPage,1)">
+              <img  id =test{{page.toString()+1}} src={{finalList[page][1]}}>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-item  (click) = "makeSelectedItem(questionPage,2)">
+              <img  id =test{{page.toString()+2}} src={{finalList[page][2]}}>
+            </ion-item>
+          </ion-col>
+          <ion-col >
+            <ion-item  (click) = "makeSelectedItem(questionPage,3)">
+              <img  id =test{{page.toString()+3}} src={{finalList[page][3]}}>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-grid> 
+    </div>
+  </div>
+  <ion-button expand="full" (click)="scoring()">제출</ion-button>  
 </ion-content>

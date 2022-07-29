@@ -86,12 +86,13 @@ export class Tab2Page {
 
   makeSelectedItem(questionNum, selectedNum) {
     for (let index of ["0","1","2","3"]) {
-      let id = questionNum.toString()+index;
+      let id = "test"+questionNum.toString()+index;
       document.getElementById(id).style.border = "none"  
     }
     this.selectedNumList[questionNum] = selectedNum;
-    document.getElementById(questionNum.toString()+selectedNum.toString()).style.border = "solid"
-    document.getElementById(questionNum.toString()+selectedNum.toString()).style.borderColor = "red"
+    document.getElementById("test"+questionNum.toString()+selectedNum.toString()).style.border = "solid"
+    document.getElementById("test"+questionNum.toString()+selectedNum.toString()).style.borderColor = "red"
+    document.getElementById("test"+questionNum.toString()+selectedNum.toString()).style.borderWidth = "3px"
     console.log(this.selectedNumList)
   }
 

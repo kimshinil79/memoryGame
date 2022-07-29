@@ -3,6 +3,7 @@
     <ion-title>
       시험(소리와 맞는 사진을 고르세요.)
     </ion-title>
+    <ion-button color ="danger" slot="end" (click)="newExam()">새시험</ion-button>
     
   </ion-toolbar>
 </ion-header>
@@ -13,17 +14,17 @@
       <ion-title size="large">Tab 2111</ion-title>
     </ion-toolbar>
   </ion-header>
-  <ion-button expand="full" (click)="newExam()">새시험</ion-button>
+  
   <ion-grid *ngFor = "let list of finalList;index as i">
-    <ion-button (click) = "makeSound(i)">
-      <ion-label size="large">{{i+1}}. </ion-label>
-      <ion-icon name="megaphone-outline" size="small">zz</ion-icon>
+    <ion-button color="success" (click) = "makeSound(i)">
+      <ion-label size="large">{{i+1}}.</ion-label>
+      <ion-icon name="megaphone-outline" size="small"></ion-icon>
     </ion-button>
     
     <ion-row>
       <ion-col *ngFor = " let item of list; index as j">
-        <ion-item id ={{i.toString()+j.toString()}}  (click) = makeSelectedItem(i,j)>
-          <img src={{item}}>
+        <ion-item id =test{{i.toString()+j.toString()}}  (click) = makeSelectedItem(i,j)>
+          <img  src={{item}}>
         </ion-item>
         
       </ion-col>
