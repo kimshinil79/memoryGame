@@ -3,6 +3,7 @@ import { PopoverController } from '@ionic/angular';
 import { ScoreComponent } from '../popovers/score/score.component';
 import { MGserveService } from '../services/mgserve.service';
 
+
 @Component({
   selector: 'app-tab3',
   templateUrl: 'tab3.page.html',
@@ -35,6 +36,11 @@ export class Tab3Page {
 
   ngOnInit() {
     this.newExam();
+  }
+  ngAfterViewInit() {
+    console.log("loaded")
+    //this.displayFirstQuestion();
+    this.changeQuestionPage(0);
   }
 
 
@@ -79,6 +85,15 @@ export class Tab3Page {
 
     }
 
+    this.displayFirstQuestion();
+
+    
+
+
+  }
+
+  displayFirstQuestion() {
+
     for (let pageNum=0;pageNum<10;pageNum++) {
       let tempPageId = "page"+pageNum.toString();
       let tempElement = document.getElementById(tempPageId)
@@ -102,7 +117,6 @@ export class Tab3Page {
       }
 
     }
-
   }
 
   makeSound(index) {
