@@ -57,11 +57,11 @@ players=[];
 
 categories = [
   {name: '동물', engName:'animalList', nameChecked:true}, 
-  {name: '과일&채소', engName:'fruitVegeList', nameChecked:false},
-  {name: '학교', engName: 'school', nameChecked:false},
-  {name: '자연', engName: 'nature', nameChecked:false},
-  {name: '음악', engName: 'music', nameChecked:false},
-  {name: '스포츠', engName: 'sports', nameChecked: false}
+  {name: '과일&채소', engName:'fruitVegeList', nameChecked:true},
+  {name: '학교', engName: 'school', nameChecked:true},
+  {name: '자연', engName: 'nature', nameChecked:true},
+  {name: '음악', engName: 'music', nameChecked:true},
+  {name: '스포츠', engName: 'sports', nameChecked: true}
 ];
 
 public selectedPlayer=[];
