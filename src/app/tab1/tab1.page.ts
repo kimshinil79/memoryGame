@@ -60,6 +60,7 @@ export class Tab1Page {
     }
 
     this.getPlayersList();
+    this.newGame();
     
     
   }
@@ -202,6 +203,7 @@ export class Tab1Page {
     this.matchedCardXY = [];
     this.MGservice.picTypeNum = this.MGservice.gameDimensionX * this.MGservice.gameDimensionY /2
     this.randomItemXYparing = this.MGservice.randomPositionPic();
+    console.log(this.randomItemXYparing)
     this.firstPicBlank = false;
     this.secondPicBlank = false;
     this.rows=[];

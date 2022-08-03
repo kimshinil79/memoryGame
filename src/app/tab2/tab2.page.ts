@@ -89,8 +89,11 @@ export class Tab2Page {
       startIndexForSlice = startIndexForSlice+3;
 
     }
+    console.log(this.itemListForExam)
+    console.log(this.finalList)
 
     this.displayFirstQuestion();
+    this.changeQuestionPage(0);
 
   }
 
