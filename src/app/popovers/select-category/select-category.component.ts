@@ -20,8 +20,12 @@ export class SelectCategoryComponent implements OnInit {
   ngOnInit() {
   }
 
-  closePopover() {
-    this.selectCategoryPopOver.dismiss();
+  save() {
+    this.selectCategoryPopOver.dismiss({'closing': true});
+  }
+
+  cancel() {
+    this.selectCategoryPopOver.dismiss({'closing': false})
   }
 
   checkBoxEvent(category) {

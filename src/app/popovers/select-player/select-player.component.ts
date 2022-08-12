@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { PopoverController } from '@ionic/angular';
-import { popoverController } from '@ionic/core';
 import { AuthenticationService } from 'src/app/authentication/authentication.service';
 import { MGserveService } from 'src/app/services/mgserve.service';
 
@@ -23,8 +22,12 @@ export class SelectPlayerComponent implements OnInit {
     this.players = this.mgservice.players;
   }
 
-  closePopover() {
-    this.selectPlayerPopOver.dismiss();
+  cancel() {
+    this.selectPlayerPopOver.dismiss({"closing":false})
+  }
+
+  save() {
+    this.selectPlayerPopOver.dismiss({"closing":true});
   }
 
   checkBoxEvent(player) {

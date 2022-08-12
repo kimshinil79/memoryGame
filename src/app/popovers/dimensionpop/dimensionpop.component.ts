@@ -25,14 +25,14 @@ export class DimensionpopComponent implements OnInit {
 
   closePopover() {
     this.selection = false;
-    this.popover.dismiss({ 'selection': this.selection });
+    this.popover.dismiss({ 'closing': false });
   }
 
   save() {
     this.mgservice.gameDimensionX = this.row;
     this.mgservice.gameDimensionY = this.col;
     this.selection = true;
-    this.popover.dismiss({ 'selection': this.selection });
+    this.popover.dismiss({ 'closing': true });
   }
 
 

@@ -5,6 +5,7 @@ import { DimensionpopComponent } from '../popovers/dimensionpop/dimensionpop.com
 import { PopoverController } from '@ionic/angular';
 import { MenuController } from '@ionic/angular';
 import { SelectPlayerComponent } from '../popovers/select-player/select-player.component';
+import { SelectCategoryComponent } from '../popovers/select-category/select-category.component';
 import { AuthenticationService } from '../authentication/authentication.service';
 import { Firestore } from '@angular/fire/firestore';
 import { addDoc, collection, doc, setDoc, getDoc, getDocs } from 'firebase/firestore';
@@ -243,7 +244,7 @@ export class Tab1Page {
     
     return pop.onDidDismiss().then(
       (data:any) => {
-        if(data.data['selection']) {
+        if(data.data['closing']) {
           this.newGame();
         }
       }
@@ -254,7 +255,32 @@ export class Tab1Page {
    const pop2 = await this.popover.create({
      component:SelectPlayerComponent
    });
-   return pop2.present();
+
+   pop2.present()
+   return pop2.onDidDismiss().then(
+    (data:any)=>{
+      if(data.data['closing'])
+      {
+        this.newGame();
+      }        
+      }
+   )
+  }
+
+  async selectCategory() {
+    const pop1 = await this.popover.create({
+      component: SelectCategoryComponent
+    });
+
+    pop1.present();
+
+    return pop1.onDidDismiss().then(
+      (data:any)=>{
+        if(data.data['closing']) {
+          this.newGame()
+        }
+        }        
+    )
   }
 
   public time = "00:00.000";

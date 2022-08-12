@@ -51,7 +51,11 @@ public music = ['cello',  'conductor', 'orchestra', 'piano', 'drum', 'guitar', '
 public  sports = ['soccer', 'basketball', 'volleyball', 'baseball', 'table tennis', 'bowling', 'tennis', 'hockey', 'badminton',
  'swimming', 'marathon', 'ski', 'snowboard', 'judo', 'boxing', 'fencing', 'golf', 'archery', 'tug of war', 'curling']
 
-categoriesList = ['animalList', 'fruitVegeList', 'school', 'nature', 'music', 'sports']
+public jobs = ['judge', 'soldier', 'nurse', 'professor', 'pharmacist', 'pilot',  'stewardess', 'dentist', 'painter', 'hairdressor', 'singer',
+'firefighter', 'policeman', 'farmer', 'cook', 'bank clerk', 'pastor', 'doctor', 'astronaut', 'fisherman', 'model', 'scientist', 'carpenter'];
+
+
+categoriesList = ['animalList', 'fruitVegeList', 'school', 'nature', 'music', 'sports', 'jobs']
 
 players=[];
 
@@ -61,7 +65,8 @@ categories = [
   {name: '학교', engName: 'school', nameChecked:false},
   {name: '자연', engName: 'nature', nameChecked:false},
   {name: '음악', engName: 'music', nameChecked:false},
-  {name: '스포츠', engName: 'sports', nameChecked: false}
+  {name: '스포츠', engName: 'sports', nameChecked: false},
+  {name: '직업', engName: 'jobs', nameChecked:false}
 ];
 
 public selectedPlayer=[];
