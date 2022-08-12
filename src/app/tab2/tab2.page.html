@@ -10,30 +10,7 @@
 
 <ion-content [fullscreen]="true">
   
-  <ion-grid *ngIf = "!submitted">
-    <ion-row>
-      <ion-col *ngFor = "let number of [0,1,2,3,4]">
-        <ion-button [color]="number==questionPage? 'danger':'success'" (click)="changeQuestionPage(number)" >{{number+1}}</ion-button>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col *ngFor = "let number of [5,6,7,8,9]">
-        <ion-button [color]="number==questionPage? 'danger':'success'" (click)="changeQuestionPage(number)" >{{number+1}}</ion-button>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-  <ion-grid *ngIf = "submitted">
-    <ion-row>
-      <ion-col *ngFor = "let number of [0,1,2,3,4]">
-        <ion-button  [color]="finalResultTFList[number] == true? 'success':'dark'"  (click)="changeQuestionPage(number)" >{{number+1}}</ion-button>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col *ngFor = "let number of [5,6,7,8,9]">
-        <ion-button [color]="finalResultTFList[number] == true? 'success':'dark'" (click)="changeQuestionPage(number)" >{{number+1}}</ion-button>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+  
 
   
   <div  *ngFor="let page of [0,1,2,3,4,5,6,7,8,9]">
@@ -66,6 +43,30 @@
       </ion-grid> 
     </div>
   </div>
+  <ion-grid *ngIf = "!submitted">
+    <ion-row>
+      <ion-col *ngFor = "let number of [0,1,2,3,4]">
+        <ion-button [color]="number==questionPage? 'danger':'success'" (click)="changeQuestionPage(number)" >{{number+1}}</ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col *ngFor = "let number of [5,6,7,8,9]">
+        <ion-button [color]="number==questionPage? 'danger':'success'" (click)="changeQuestionPage(number)" >{{number+1}}</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid *ngIf = "submitted">
+    <ion-row>
+      <ion-col *ngFor = "let number of [0,1,2,3,4]">
+        <ion-button  [color]="finalResultTFList[number] == true? 'success':'dark'"  (click)="changeQuestionPage(number)" >{{number+1}}</ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col *ngFor = "let number of [5,6,7,8,9]">
+        <ion-button [color]="finalResultTFList[number] == true? 'success':'dark'" (click)="changeQuestionPage(number)" >{{number+1}}</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
   <ion-grid>
     <ion-row>
       <ion-col>
