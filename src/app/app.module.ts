@@ -17,6 +17,7 @@ import { provideFirestore,getFirestore, enableIndexedDbPersistence } from '@angu
 import { SelectCategoryComponent } from './popovers/select-category/select-category.component';
 import { GameConclusionComponent } from './popovers/game-conclusion/game-conclusion.component';
 import { ScoreComponent } from './popovers/score/score.component';
+import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 
 @NgModule({
   declarations: [AppComponent, DimensionpopComponent, SelectPlayerComponent, SelectCategoryComponent, GameConclusionComponent, ScoreComponent],
@@ -36,7 +37,8 @@ import { ScoreComponent } from './popovers/score/score.component';
       return firestore;
     } )],
   providers: [
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    ScreenOrientation],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
