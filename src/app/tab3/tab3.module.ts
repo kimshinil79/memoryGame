@@ -7,6 +7,8 @@ import { Tab3Page } from './tab3.page';
 import { ExploreContainerComponentModule } from '../explore-container/explore-container.module';
 
 import { Tab3PageRoutingModule } from './tab3-routing.module';
+import { SafesecurityPipe } from '../pipes/safesecurity.pipe';
+import { SelectClipComponent } from '../popovers/select-clip/select-clip.component';
 
 @NgModule({
   imports: [
@@ -17,6 +19,8 @@ import { Tab3PageRoutingModule } from './tab3-routing.module';
     RouterModule.forChild([{ path: '', component: Tab3Page }]),
     Tab3PageRoutingModule,
   ],
-  declarations: [Tab3Page]
+
+  providers: [SafesecurityPipe],
+  declarations: [Tab3Page, SafesecurityPipe, SelectClipComponent]
 })
 export class Tab3PageModule {}

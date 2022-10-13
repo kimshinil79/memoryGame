@@ -4,8 +4,8 @@ import { ScoreComponent } from '../popovers/score/score.component';
 import { MGserveService } from '../services/mgserve.service';
 import { Observable, of, fromEvent } from 'rxjs';
 import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
-import { SafePipePipe } from '../safe-pipe.pipe';
-
+import { SafesecurityPipe } from '../pipes/safesecurity.pipe';
+import { SelectClipComponent } from '../popovers/select-clip/select-clip.component';
 
 
 @Component({
@@ -17,7 +17,8 @@ export class Tab3Page {
 
   constructor(
     private screenOrientation: ScreenOrientation, 
-    private safePipe: SafePipePipe
+    private popover : PopoverController,
+    public safeSecurity: SafesecurityPipe
   ) {}
 
   orientation = 'default';
@@ -34,6 +35,14 @@ export class Tab3Page {
         }
       }
     )
+  }
+
+  async selectClipPopover() {
+    const pop = await this.popover.create({
+      component: SelectClipComponent
+    })
+
+    pop.present();
   }
 
   

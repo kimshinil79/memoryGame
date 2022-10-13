@@ -1,14 +1,13 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab3    
+      <ion-button (click)="selectClipPopover()">영상 선택</ion-button>
     </ion-title>
     
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <iframe width="420" height="345" [src]="youtubeId | safePipe">
+  <iframe width="420" height="345" [src]="youtubeId | safesecurity">
   </iframe>
-  {{youtubeId}}
 </ion-content>
