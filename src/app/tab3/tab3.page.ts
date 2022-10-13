@@ -4,6 +4,8 @@ import { ScoreComponent } from '../popovers/score/score.component';
 import { MGserveService } from '../services/mgserve.service';
 import { Observable, of, fromEvent } from 'rxjs';
 import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
+import { SafePipePipe } from '../safe-pipe.pipe';
+
 
 
 @Component({
@@ -14,7 +16,8 @@ import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 export class Tab3Page {
 
   constructor(
-    private screenOrientation: ScreenOrientation
+    private screenOrientation: ScreenOrientation, 
+    private safePipe: SafePipePipe
   ) {}
 
   orientation = 'default';
