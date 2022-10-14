@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { PopoverController } from '@ionic/angular';
+import { popoverController } from '@ionic/core';
 
 @Component({
   selector: 'app-select-clip',
@@ -7,8 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SelectClipComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private popover: PopoverController
+  ) { }
+
+  firstClip = ""
+  secondClip = ""
 
   ngOnInit() {}
+
+  OK() {
+    this.popover.dismiss({'firstClip':this.firstClip, 'secondClip':this.secondClip})
+  }
 
 }

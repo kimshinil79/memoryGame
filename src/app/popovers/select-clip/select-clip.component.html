@@ -1,12 +1,12 @@
 <ion-list>
   <ion-item>
-    <ion-input placeholder="First Movie"></ion-input>
+    <ion-input placeholder="First Movie" [(ngModel)]="firstClip"></ion-input>
     <ion-button>...</ion-button>
   </ion-item>
 
   <ion-item>
-    <ion-input placeholder="Second Movie"></ion-input>
+    <ion-input placeholder="Second Movie" [(ngModel)]="secondClip"></ion-input>
     <ion-button>...</ion-button>
   </ion-item>
 </ion-list>
-<ion-button expand="full">확인</ion-button>
+<ion-button expand="full" (click)="OK()">확인</ion-button>

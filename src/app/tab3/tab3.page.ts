@@ -22,7 +22,8 @@ export class Tab3Page {
   ) {}
 
   orientation = 'default';
-  youtubeId = "https://www.youtube.com/embed/1VAn7CX_omg";
+  youtubeURL = "https://www.youtube.com/embed/1VAn7CX_omg";
+  youtubeURLfromPopOver = "";
 
 
   ngOnInit() {
@@ -43,6 +44,18 @@ export class Tab3Page {
     })
 
     pop.present();
+
+    return pop.onDidDismiss().then(
+      (data:any) => {
+        const firstClip = data.data['firstClip'];
+        const secondClip = data.data['secondClip'];
+        if (firstClip.includes('https://youtu.be')) {
+          const youtubeId = firstClip.split('/').pop();
+          this.youtubeURL = "https://www.youtube.com/embed/"+youtubeId
+        }
+      }
+    
+    )
   }
 
   
