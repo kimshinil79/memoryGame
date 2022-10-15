@@ -22,5 +22,9 @@
 	{
 		"pkg": "@capacitor/storage",
 		"classpath": "com.capacitorjs.plugins.storage.StoragePlugin"
+	},
+	{
+		"pkg": "capacitor-video-player",
+		"classpath": "com.jeep.plugin.capacitor.capacitorvideoplayer.CapacitorVideoPlayerPlugin"
 	}
 ]
