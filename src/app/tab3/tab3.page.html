@@ -2,6 +2,7 @@
   <ion-toolbar>
     <ion-title>
       <ion-button (click)="selectClipPopover()">영상 선택</ion-button>
+      <ion-button (click)="pickVideo()">영상 선택</ion-button>
     </ion-title>
     
   </ion-toolbar>
@@ -10,4 +11,8 @@
 <ion-content [fullscreen]="true">
   <iframe width="420" height="345" [src]="youtubeURL | safesecurity">
   </iframe>
+  <video controls width="420" height="345" [src] = "videoFile"></video>
+  <div *ngFor="let img of imgs">
+    <p>{{img}}</p>
+  </div>
 </ion-content>

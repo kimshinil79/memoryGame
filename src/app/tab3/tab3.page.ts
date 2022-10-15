@@ -6,7 +6,9 @@ import { Observable, of, fromEvent } from 'rxjs';
 import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 import { SafesecurityPipe } from '../pipes/safesecurity.pipe';
 import { SelectClipComponent } from '../popovers/select-clip/select-clip.component';
-
+import { Camera, GalleryImageOptions } from '@capacitor/camera';
+import { LoadingController } from '@ionic/angular';
+import { FilePicker} from '@robingenz/capacitor-file-picker'
 
 @Component({
   selector: 'app-tab3',
@@ -18,12 +20,15 @@ export class Tab3Page {
   constructor(
     private screenOrientation: ScreenOrientation, 
     private popover : PopoverController,
-    public safeSecurity: SafesecurityPipe
+    public safeSecurity: SafesecurityPipe,
+    private loader: LoadingController,
   ) {}
 
   orientation = 'default';
   youtubeURL = "https://www.youtube.com/embed/1VAn7CX_omg";
   youtubeURLfromPopOver = "";
+  videoFile="../../assets/haim.mp4";
+  imgs = [];
 
 
   ngOnInit() {
@@ -58,9 +63,41 @@ export class Tab3Page {
     )
   }
 
+  // pickVideo() {
+  //   this.loader.create({
+  //     message: "기다려줘유..."
+  //   }).then((ele) => {
+  //     ele.present();
+  //     let options:GalleryImageOptions = {
+  //       correctOrientation:true
+  //     }
+  //     Camera.pickImages(options).then((val)=>{
+  //       console.log(val)
+  //       let images = val.photos;
+  //       this.imgs = [];
+  //       for (let i = 0; i<images.length;i++) {
+  //         this.imgs.push(images[i].webPath);
+  //         console.log(this.imgs)
+  //       }
+  //       ele.dismiss()
+  //     })
+
+  //   })
+  // }
   
+  async pickFiles(){
+    const result = await FilePicker.pickFiles({
+      types:['video/mp4'],
+      multiple: false,
+    })
+    console.log(result)
+  }
+ 
+  pickVideo() {
+    this.pickFiles();
+    
+    
+  }
 
-
-
-
+  
 }
