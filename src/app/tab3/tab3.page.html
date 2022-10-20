@@ -9,10 +9,7 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <iframe width="420" height="345" [src]="youtubeURL | safesecurity">
+  <iframe width="420" height="345" [src]="firstMovie | safesecurity">
   </iframe>
-  <video controls width="420" height="345" [src] = "videoFile"></video>
-  <div *ngFor="let img of imgs">
-    <p>{{img}}</p>
-  </div>
+  <video controls width="420" height="345" [src] = "secondMovie | safesecurity"></video>
 </ion-content>
