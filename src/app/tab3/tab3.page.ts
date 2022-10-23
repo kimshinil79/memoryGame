@@ -7,8 +7,10 @@ import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 import { SafesecurityPipe } from '../pipes/safesecurity.pipe';
 import { SelectClipComponent } from '../popovers/select-clip/select-clip.component';
 import { Camera, GalleryImageOptions } from '@capacitor/camera';
-import { LoadingController } from '@ionic/angular';
+//import { LoadingController } from '@ionic/angular';
 import { FilePicker} from '@robingenz/capacitor-file-picker'
+import { CompareMovieService } from '../services/compare-movie.service';
+import { CapacitorNativeFilePicker } from "capacitor-native-filepicker";
 
 @Component({
   selector: 'app-tab3',
@@ -21,14 +23,16 @@ export class Tab3Page {
     private screenOrientation: ScreenOrientation, 
     private popover : PopoverController,
     public safeSecurity: SafesecurityPipe,
-    private loader: LoadingController,
+    private compareMovieService: CompareMovieService,
+    //private loader: LoadingController,
   ) {}
 
   orientation = 'default';
-  youtubeURL = "https://www.youtube.com/embed/1VAn7CX_omg";
-  youtubeURLfromPopOver = "";
-  videoFile="../../assets/haim.mp4";
-  imgs = [];
+  firstMovie = "https://www.youtube.com/embed/1VAn7CX_omg";
+  secondMovie="../../assets/haim.mp4";
+  firstMovieYoutube = true;
+  secondMovieYoutube = false;
+
 
 
   ngOnInit() {
@@ -55,40 +59,32 @@ export class Tab3Page {
         const firstClip = data.data['firstClip'];
         const secondClip = data.data['secondClip'];
         if (firstClip.includes('https://youtu.be')) {
-          const youtubeId = firstClip.split('/').pop();
-          this.youtubeURL = "https://www.youtube.com/embed/"+youtubeId
+          this.firstMovieYoutube = true;
+          const youtubeId1 = firstClip.split('/').pop();
+          this.firstMovie = "https://www.youtube.com/embed/"+youtubeId1
+        } else {
+          this.firstMovieYoutube = false;
+          this.firstMovie = "../../assets/"+firstClip
         }
+        if (secondClip.includes('https://youtu.be')) {
+          this.secondMovieYoutube = true;
+          const youtubeId2 = firstClip.split('/').pop();
+          this.secondMovie = "https://www.youtube.com/embed/"+youtubeId2
+        } else {
+          this.secondMovieYoutube = false;
+          this.secondMovie = "../../assets/"+secondClip;
+        }
+
       }
     
     )
   }
-
-  // pickVideo() {
-  //   this.loader.create({
-  //     message: "기다려줘유..."
-  //   }).then((ele) => {
-  //     ele.present();
-  //     let options:GalleryImageOptions = {
-  //       correctOrientation:true
-  //     }
-  //     Camera.pickImages(options).then((val)=>{
-  //       console.log(val)
-  //       let images = val.photos;
-  //       this.imgs = [];
-  //       for (let i = 0; i<images.length;i++) {
-  //         this.imgs.push(images[i].webPath);
-  //         console.log(this.imgs)
-  //       }
-  //       ele.dismiss()
-  //     })
-
-  //   })
-  // }
   
   async pickFiles(){
-    const result = await FilePicker.pickFiles({
-      types:['video/mp4'],
-      multiple: false,
+    const result = await CapacitorNativeFilePicker.launchFilePicker ({
+      limit: -1,
+      showHiddenFiles: true
+
     })
     console.log(result)
   }
