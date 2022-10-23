@@ -8,6 +8,9 @@ project(':capacitor-app').projectDir = new File('../node_modules/@capacitor/app/
 include ':capacitor-camera'
 project(':capacitor-camera').projectDir = new File('../node_modules/@capacitor/camera/android')
 
+include ':capacitor-filesystem'
+project(':capacitor-filesystem').projectDir = new File('../node_modules/@capacitor/filesystem/android')
+
 include ':capacitor-haptics'
 project(':capacitor-haptics').projectDir = new File('../node_modules/@capacitor/haptics/android')
 
@@ -25,6 +28,12 @@ project(':capacitor-storage').projectDir = new File('../node_modules/@capacitor/
 
 include ':robingenz-capacitor-file-picker'
 project(':robingenz-capacitor-file-picker').projectDir = new File('../node_modules/@robingenz/capacitor-file-picker/android')
+
+include ':capacitor-blob-writer'
+project(':capacitor-blob-writer').projectDir = new File('../node_modules/capacitor-blob-writer/android')
+
+include ':capacitor-native-filepicker'
+project(':capacitor-native-filepicker').projectDir = new File('../node_modules/capacitor-native-filepicker/android')
 
 include ':capacitor-video-player'
 project(':capacitor-video-player').projectDir = new File('../node_modules/capacitor-video-player/android')

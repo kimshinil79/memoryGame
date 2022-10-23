@@ -2,19 +2,22 @@
   <ion-toolbar>
     <ion-title>
       <ion-button (click)="selectClipPopover()">영상 선택</ion-button>
-      <ion-button (click)="pickVideo()">영상 선택</ion-button>
+      <ion-button (click)="pickVideo($event)">영상 선택</ion-button>
     </ion-title>
     
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  <input type="file" (click) = "tempfunc($event)">
   <div *ngIf = "firstMovieYoutube">
     <iframe width="420" height="345" [src]="firstMovie | safesecurity">
     </iframe>
+    <p>{{firstMovie}}</p>
   </div>
   <div *ngIf = "!firstMovieYoutube">
     <video controls width="420" height="345" [src] = "firstMovie"></video>
+    <p>{{firstMovie}}</p>
   </div>
   
   <div *ngIf = "secondMovieYoutube">

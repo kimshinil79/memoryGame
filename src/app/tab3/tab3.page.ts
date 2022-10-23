@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { PopoverController } from '@ionic/angular';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ScoreComponent } from '../popovers/score/score.component';
 import { MGserveService } from '../services/mgserve.service';
 import { Observable, of, fromEvent } from 'rxjs';
@@ -11,6 +12,9 @@ import { Camera, GalleryImageOptions } from '@capacitor/camera';
 import { FilePicker} from '@robingenz/capacitor-file-picker'
 import { CompareMovieService } from '../services/compare-movie.service';
 import { CapacitorNativeFilePicker } from "capacitor-native-filepicker";
+import { Filesystem, Directory} from '@capacitor/filesystem'
+
+const APP_DIRECTORY = Directory.Documents;
 
 @Component({
   selector: 'app-tab3',
@@ -24,6 +28,8 @@ export class Tab3Page {
     private popover : PopoverController,
     public safeSecurity: SafesecurityPipe,
     private compareMovieService: CompareMovieService,
+    private route: ActivatedRoute,
+    private router: Router,
     //private loader: LoadingController,
   ) {}
 
@@ -32,10 +38,14 @@ export class Tab3Page {
   secondMovie="../../assets/haim.mp4";
   firstMovieYoutube = true;
   secondMovieYoutube = false;
+  currentFolder = '';
 
 
 
   ngOnInit() {
+    this.currentFolder = this.route.snapshot.paramMap.get('folder') || '';
+    console.log('folder', this.currentFolder)
+    console.log('DIRECTORY!!', APP_DIRECTORY)
     this.screenOrientation.onChange().subscribe(
       ()=>{
         if (this.orientation == "default") {
@@ -64,7 +74,7 @@ export class Tab3Page {
           this.firstMovie = "https://www.youtube.com/embed/"+youtubeId1
         } else {
           this.firstMovieYoutube = false;
-          this.firstMovie = "../../assets/"+firstClip
+          this.firstMovie = this.currentFolder+firstClip
         }
         if (secondClip.includes('https://youtu.be')) {
           this.secondMovieYoutube = true;
@@ -91,8 +101,12 @@ export class Tab3Page {
  
   pickVideo() {
     this.pickFiles();
-    
-    
+       
+  }
+
+  tempfunc($event) {
+    const selected = $event.target.files
+    console.log(selected)
   }
 
   

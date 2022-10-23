@@ -19,6 +19,7 @@ import { GameConclusionComponent } from './popovers/game-conclusion/game-conclus
 import { ScoreComponent } from './popovers/score/score.component';
 import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 import { SafesecurityPipe } from './pipes/safesecurity.pipe';
+import { PreviewAnyFile } from '@ionic-native/preview-any-file/ngx'
 
 @NgModule({
   declarations: [AppComponent, DimensionpopComponent, SelectPlayerComponent, SelectCategoryComponent, GameConclusionComponent, ScoreComponent, SafesecurityPipe,],
@@ -39,7 +40,7 @@ import { SafesecurityPipe } from './pipes/safesecurity.pipe';
     } )],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    ScreenOrientation, SafesecurityPipe],
+    ScreenOrientation, SafesecurityPipe, PreviewAnyFile],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
