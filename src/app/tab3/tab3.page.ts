@@ -10,6 +10,7 @@ import { Camera, GalleryImageOptions } from '@capacitor/camera';
 //import { LoadingController } from '@ionic/angular';
 import { FilePicker} from '@robingenz/capacitor-file-picker'
 import { CompareMovieService } from '../services/compare-movie.service';
+import { CapacitorNativeFilePicker } from "capacitor-native-filepicker";
 
 @Component({
   selector: 'app-tab3',
@@ -28,9 +29,10 @@ export class Tab3Page {
 
   orientation = 'default';
   firstMovie = "https://www.youtube.com/embed/1VAn7CX_omg";
-  youtubeURLfromPopOver = "";
-  secondMovie="../../assets/attentionHaim.mp4";
-  imgs = [];
+  secondMovie="../../assets/haim.mp4";
+  firstMovieYoutube = true;
+  secondMovieYoutube = false;
+
 
 
   ngOnInit() {
@@ -57,15 +59,19 @@ export class Tab3Page {
         const firstClip = data.data['firstClip'];
         const secondClip = data.data['secondClip'];
         if (firstClip.includes('https://youtu.be')) {
+          this.firstMovieYoutube = true;
           const youtubeId1 = firstClip.split('/').pop();
           this.firstMovie = "https://www.youtube.com/embed/"+youtubeId1
         } else {
+          this.firstMovieYoutube = false;
           this.firstMovie = "../../assets/"+firstClip
         }
         if (secondClip.includes('https://youtu.be')) {
+          this.secondMovieYoutube = true;
           const youtubeId2 = firstClip.split('/').pop();
           this.secondMovie = "https://www.youtube.com/embed/"+youtubeId2
         } else {
+          this.secondMovieYoutube = false;
           this.secondMovie = "../../assets/"+secondClip;
         }
 
@@ -75,9 +81,10 @@ export class Tab3Page {
   }
   
   async pickFiles(){
-    const result = await FilePicker.pickFiles({
-      types:['video/mp4'],
-      multiple: false,
+    const result = await CapacitorNativeFilePicker.launchFilePicker ({
+      limit: -1,
+      showHiddenFiles: true
+
     })
     console.log(result)
   }

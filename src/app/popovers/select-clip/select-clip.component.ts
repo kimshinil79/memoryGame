@@ -30,6 +30,7 @@ export class SelectClipComponent implements OnInit {
       types:['video/mp4'],
       multiple: false,
     })
+    console.log(result);
     this.compareMovieService.firstClip = result['files'][0]['name'];
     this.firstClip = this.compareMovieService.firstClip;
   }

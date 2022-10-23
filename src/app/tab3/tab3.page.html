@@ -9,7 +9,19 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <iframe width="420" height="345" [src]="firstMovie | safesecurity">
-  </iframe>
-  <video controls width="420" height="345" [src] = "secondMovie | safesecurity"></video>
+  <div *ngIf = "firstMovieYoutube">
+    <iframe width="420" height="345" [src]="firstMovie | safesecurity">
+    </iframe>
+  </div>
+  <div *ngIf = "!firstMovieYoutube">
+    <video controls width="420" height="345" [src] = "firstMovie"></video>
+  </div>
+  
+  <div *ngIf = "secondMovieYoutube">
+    <iframe width="420" height="345" [src]="secondMovie | safesecurity">
+    </iframe>
+  </div>
+  <div *ngIf = "!secondMovieYoutube">
+    <video controls width="420" height="345" [src] = "secondMovie"></video>
+  </div>
 </ion-content>
