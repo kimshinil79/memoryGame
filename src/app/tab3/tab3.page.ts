@@ -12,7 +12,7 @@ import { Camera, GalleryImageOptions } from '@capacitor/camera';
 import { CompareMovieService } from '../services/compare-movie.service';
 import { Filesystem, Directory } from '@capacitor/filesystem'
 
-const APP_DIRECTORY = Directory.Documents;
+const APP_DIRECTORY = Directory.Documents; 
 
 @Component({
   selector: 'app-tab3',
