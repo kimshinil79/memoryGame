@@ -9,10 +9,8 @@ import { SafesecurityPipe } from '../pipes/safesecurity.pipe';
 import { SelectClipComponent } from '../popovers/select-clip/select-clip.component';
 import { Camera, GalleryImageOptions } from '@capacitor/camera';
 //import { LoadingController } from '@ionic/angular';
-import { FilePicker} from '@robingenz/capacitor-file-picker'
 import { CompareMovieService } from '../services/compare-movie.service';
-import { CapacitorNativeFilePicker } from "capacitor-native-filepicker";
-import { Filesystem, Directory} from '@capacitor/filesystem'
+import { Filesystem, Directory } from '@capacitor/filesystem'
 
 const APP_DIRECTORY = Directory.Documents;
 
@@ -31,6 +29,7 @@ export class Tab3Page {
     private route: ActivatedRoute,
     private router: Router,
     //private loader: LoadingController,
+
   ) {}
 
   orientation = 'default';
@@ -91,12 +90,7 @@ export class Tab3Page {
   }
   
   async pickFiles(){
-    const result = await CapacitorNativeFilePicker.launchFilePicker ({
-      limit: -1,
-      showHiddenFiles: true
 
-    })
-    console.log(result)
   }
  
   pickVideo() {
@@ -104,9 +98,14 @@ export class Tab3Page {
        
   }
 
-  tempfunc($event) {
-    const selected = $event.target.files
-    console.log(selected)
+  async tempfunc() {
+    console.log('haha')
+
+
+    // this.fileopener.open('path/to/file.pdf', 'application/pdf').then(url => {
+    //   console.log(url)
+    // })
+    
   }
 
   
