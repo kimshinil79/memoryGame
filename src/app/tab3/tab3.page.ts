@@ -11,6 +11,7 @@ import { Camera, GalleryImageOptions } from '@capacitor/camera';
 //import { LoadingController } from '@ionic/angular';
 import { CompareMovieService } from '../services/compare-movie.service';
 import { Filesystem, Directory } from '@capacitor/filesystem'
+import { Device } from '@capacitor/device'
 
 const APP_DIRECTORY = Directory.Documents; 
 
@@ -33,15 +34,16 @@ export class Tab3Page {
   ) {}
 
   orientation = 'default';
-  firstMovie = "https://www.youtube.com/embed/1VAn7CX_omg";
+  firstMovie = "C:/Users/alien/Downloads/NewJeansAttention.mp4";
   secondMovie="../../assets/haim.mp4";
   firstMovieYoutube = true;
   secondMovieYoutube = false;
   currentFolder = '';
+  OS = "";
 
 
 
-  ngOnInit() {
+  async ngOnInit() {
     this.currentFolder = this.route.snapshot.paramMap.get('folder') || '';
     console.log('folder', this.currentFolder)
     console.log('DIRECTORY!!', APP_DIRECTORY)
@@ -54,6 +56,7 @@ export class Tab3Page {
         }
       }
     )
+    this.OS = await (await Device.getInfo()).operatingSystem;
   }
 
   async selectClipPopover() {
@@ -65,48 +68,30 @@ export class Tab3Page {
 
     return pop.onDidDismiss().then(
       (data:any) => {
-        const firstClip = data.data['firstClip'];
-        const secondClip = data.data['secondClip'];
-        if (firstClip.includes('https://youtu.be')) {
-          this.firstMovieYoutube = true;
-          const youtubeId1 = firstClip.split('/').pop();
-          this.firstMovie = "https://www.youtube.com/embed/"+youtubeId1
-        } else {
-          this.firstMovieYoutube = false;
-          this.firstMovie = this.currentFolder+firstClip
-        }
-        if (secondClip.includes('https://youtu.be')) {
-          this.secondMovieYoutube = true;
-          const youtubeId2 = firstClip.split('/').pop();
-          this.secondMovie = "https://www.youtube.com/embed/"+youtubeId2
-        } else {
-          this.secondMovieYoutube = false;
-          this.secondMovie = "../../assets/"+secondClip;
-        }
-
+        const YouTubeURL = data.data['YouTubeURL']
+        console.log(YouTubeURL)
       }
-    
     )
   }
   
-  async pickFiles(){
 
+  firstClipSelect($event) {
+    const fileName = $event.target.files[0].name;
+    console.log('haha', fileName)
+    if (this.OS == "windows") {
+      this.firstMovie = "../assets/"+fileName
+    }
   }
- 
-  pickVideo() {
-    this.pickFiles();
-       
+
+  secondClipSelect($event) {
+    const fileName = $event.target.files[0].name;
+    console.log('haha', fileName)
+    if (this.OS == "windows") {
+      this.secondMovie = "../assets/"+fileName
+    }
   }
 
-  async tempfunc() {
-    console.log('haha')
-
-
-    // this.fileopener.open('path/to/file.pdf', 'application/pdf').then(url => {
-    //   console.log(url)
-    // })
-    
-  }
+  
 
   
 }

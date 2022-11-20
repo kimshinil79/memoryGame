@@ -1,30 +1,26 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      <ion-button (click)="selectClipPopover()">영상 선택</ion-button>
-      <ion-button (click)="pickVideo($event)">영상 선택</ion-button>
+      <ion-button (click)="selectClipPopover()">YouTube 다운받기</ion-button>
     </ion-title>
     
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <input type="file" (click) = "tempfunc()">
-  <div *ngIf = "firstMovieYoutube">
-    <iframe width="420" height="345" [src]="firstMovie | safesecurity">
-    </iframe>
-    <p>{{firstMovie}}</p>
+  <div>
+    운영체제 : {{OS}}
   </div>
-  <div *ngIf = "!firstMovieYoutube">
-    <video controls width="420" height="345" [src] = "firstMovie"></video>
-    <p>{{firstMovie}}</p>
+  <input type="file" (change) = "firstClipSelect($event)">
+  <div>
+    <video controls width="420" height="345" [src] = "firstMovie | safesecurity"></video>
   </div>
-  
-  <div *ngIf = "secondMovieYoutube">
-    <iframe width="420" height="345" [src]="secondMovie | safesecurity">
-    </iframe>
+  {{firstMovie}}
+  <br>
+
+  <input type="file" (change) = "secondClipSelect($event)">
+  <div>
+    <video controls width="420" height="345" [src] = "secondMovie | safesecurity"></video>
   </div>
-  <div *ngIf = "!secondMovieYoutube">
-    <video controls width="420" height="345" [src] = "secondMovie"></video>
-  </div>
+  {{secondMovie}}
 </ion-content>
