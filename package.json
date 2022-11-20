@@ -46,7 +46,6 @@
     "capacitor-blob-writer": "^1.1.4",
     "capacitor-native-filepicker": "github:ourcodeworld/capacitor-native-filepicker",
     "capacitor-video-player": "^3.7.5",
-    "cordova-plugin-file-opener2": "^3.0.5",
     "cordova-plugin-filepath": "^1.6.0",
     "cordova-plugin-nativeaudio": "^3.0.9",
     "cordova-plugin-nativestorage": "^2.3.2",
