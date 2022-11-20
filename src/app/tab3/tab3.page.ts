@@ -81,7 +81,7 @@ export class Tab3Page {
     if (this.OS == "windows") {
       this.firstMovie = "../assets/"+fileName
     } else {
-      this.firstMovie = "file:///내장 메모리/DCIM/Camera/"+fileName
+      this.firstMovie = "file:///내장메모리/DCIM/Camera/"+fileName
     }
 
   }
@@ -92,7 +92,7 @@ export class Tab3Page {
     if (this.OS == "windows") {
       this.secondMovie = "../assets/"+fileName
     } else {
-      this.secondMovie = "file:///내장 메모리/DCIM/Camera/"+fileName
+      this.secondMovie = "file:///내장메모리/DCIM/Camera/"+fileName
     }
   }
 
