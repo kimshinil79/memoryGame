@@ -80,7 +80,10 @@ export class Tab3Page {
     console.log('haha', fileName)
     if (this.OS == "windows") {
       this.firstMovie = "../assets/"+fileName
+    } else {
+      this.firstMovie = "/내장 메모리/DCIM/Camera/"+fileName
     }
+
   }
 
   secondClipSelect($event) {
@@ -88,6 +91,8 @@ export class Tab3Page {
     console.log('haha', fileName)
     if (this.OS == "windows") {
       this.secondMovie = "../assets/"+fileName
+    } else {
+      this.secondMovie = "/내장 메모리/DCIM/Camera/"+fileName
     }
   }
 
